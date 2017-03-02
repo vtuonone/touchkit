@@ -16,8 +16,7 @@ Official releases for versions 3.x and 4.x are available at http://vaadin.com/ad
 
 ## Issue tracking & Contributions
 
-This project is no longer maintained by Vaadin Ltd. If you want to contribute to the project, please create a fork.
-If you want to become a maintainer, please contact Vaadin Ltd and we will redirect users to your fork.
+This project is no longer maintained by Vaadin Ltd, but lives as a community effort here. Use this repository for tickets, pull requests and enhancement ideas.
 
 ## License
 
