@@ -15,12 +15,15 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-assembly-plugin</artifactId>
-                        <version>2.2.1</version>
-                        <configuration>
-                            <skipAssembly>true</skipAssembly>
-                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                                <phase>install</phase>
+                            </execution>
+                        </executions>
                     </plugin>
-
                     <plugin>
                         <artifactId>maven-deploy-plugin</artifactId>
                         <version>2.5</version>
@@ -63,8 +66,8 @@
         <connection>scm:git:ssh://git@github.com/parttio/touchkit.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/parttio/touchkit.git</developerConnection>
         <url>https://github.com/parttio/touchkit</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
     <licenses>
         <license>
             <name>Apache License Version 2.0</name>
@@ -217,6 +220,17 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/assembly/distribution.xml</descriptor>
+                    </descriptors>
+                </configuration>
+            </plugin>
+
         </plugins>
         <pluginManagement>
             <plugins>
