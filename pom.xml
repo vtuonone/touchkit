@@ -61,8 +61,8 @@
         </profile>
     </profiles>
     <scm>
-        <connection>scm:git:git://github.com/parttio/touchkit</connection>
-        <developerConnection>scm:git:git://github.com/parttio/touchkit</developerConnection>
+        <connection>scm:git:ssh://git@github.com/parttio/touchkit.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/parttio/touchkit.git</developerConnection>
         <url>https://github.com/parttio/touchkit</url>
     </scm>
     <licenses>
