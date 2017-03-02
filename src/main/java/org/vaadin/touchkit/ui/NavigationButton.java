@@ -313,7 +313,7 @@ public class NavigationButton extends AbstractComponent {
      * No action is taken if the button is disabled.
      */
     public void click() {
-        if (isEnabled() && !isReadOnly()) {
+        if (isEnabled()) {
             Connector targetView = getState().getTargetView();
 
             if (targetView != null) {
