@@ -9,6 +9,7 @@
 	
 	<modules>
 		<module>touchkit</module>
+		<module>touchkit-compatibility</module>
 	</modules>
     <profiles>
         <profile>
@@ -124,18 +125,6 @@
     -->
 
     <build>
-
-        <resources>
-            <!-- These are also needed for the sources required by the GWT compiler
-            to be included in the produced JARs -->
-            <resource>
-                <directory>src/main/java</directory>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-        </resources>
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -163,60 +152,7 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
                 <version>3.0.2</version>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.0.2</version>
-                <configuration>
-                    <archive>
-                        <index>true</index>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                            <!-- Implementation-Title and Implementation-Version come from the
-                            POM by default -->
-                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                        </manifest>
-                        <manifestEntries>
-                            <!-- Package format version - do not change -->
-                            <Vaadin-Package-Version>1</Vaadin-Package-Version>
-                            <AdVaaLicen>Apache2</AdVaaLicen>
-                            <AdVaaName>touchkit</AdVaaName>
-                            <!-- Comma-separated list of widgetsets in the package -->
-                            <Vaadin-Widgetsets>org.vaadin.touchkit.gwt.TouchKitWidgetSet</Vaadin-Widgetsets>
-                        </manifestEntries>
-                    </archive>
-                </configuration>
-            </plugin>
-            <!-- Compiles your custom GWT components with the GWT compiler -->
-            <plugin>
-                <groupId>com.vaadin</groupId>
-                <artifactId>vaadin-maven-plugin</artifactId>
-                <version>${vaadin.plugin.version}</version>
-                <configuration>
-                    <webappDirectory>target/classes/VAADIN/widgetsets</webappDirectory>
-                    <modules>
-                        <module>org.vaadin.touchkit.gwt.TouchKitWidgetSet</module>
-                    </modules>
-                    <extraJvmArgs>-Xmx1024M -Xss4024k</extraJvmArgs>
-                    <runTarget>http://localhost:7777/</runTarget>
-                    <hostedWebapp>${project.build.directory}/${project.build.finalName}</hostedWebapp>
-                    <draftCompile>false</draftCompile>
-                    <strict>true</strict>
-                    <style>OBF</style>
-                    <force>false</force>
-                    <!-- not enabling it right now, until issue #13801 is fixed -->
-                    <enableClosureCompiler>false</enableClosureCompiler>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+            </plugin>            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
