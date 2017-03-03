@@ -1,4 +1,4 @@
-package org.vaadin.touchkit.gwt.client.ui;
+package org.vaadin.touchkit.v7.gwt.client.ui;
 
 import com.vaadin.v7.client.ui.VTextField;
 

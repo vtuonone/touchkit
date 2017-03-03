@@ -1,11 +1,9 @@
-package org.vaadin.touchkit.itest;
+package org.vaadin.touchkit.v7.itest;
 
 import java.util.Date;
 
-import org.vaadin.touchkit.AbstractTouchKitIntegrationTest;
 import org.vaadin.touchkit.gwt.client.theme.StyleNames;
 import org.vaadin.touchkit.ui.DatePicker;
-import org.vaadin.touchkit.ui.EmailField;
 import org.vaadin.touchkit.ui.HorizontalButtonGroup;
 import org.vaadin.touchkit.ui.NavigationButton;
 import org.vaadin.touchkit.ui.NavigationView;
@@ -14,20 +12,22 @@ import org.vaadin.touchkit.ui.Popover;
 import org.vaadin.touchkit.ui.Switch;
 import org.vaadin.touchkit.ui.Toolbar;
 import org.vaadin.touchkit.ui.VerticalComponentGroup;
+import org.vaadin.touchkit.v7.AbstractTouchKitIntegrationTest;
+import org.vaadin.touchkit.v7.ui.EmailField;
 
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.v7.ui.ComboBox;
 import com.vaadin.ui.CssLayout;
+import com.vaadin.ui.Notification;
+import com.vaadin.ui.Notification.Type;
+import com.vaadin.ui.Panel;
+import com.vaadin.v7.ui.ComboBox;
 import com.vaadin.v7.ui.DateField;
 import com.vaadin.v7.ui.Label;
 import com.vaadin.v7.ui.NativeSelect;
-import com.vaadin.ui.Notification;
-import com.vaadin.ui.Notification.Type;
 import com.vaadin.v7.ui.OptionGroup;
-import com.vaadin.ui.Panel;
 import com.vaadin.v7.ui.TextArea;
 import com.vaadin.v7.ui.TextField;
 import com.vaadin.v7.ui.Upload;
@@ -58,7 +58,7 @@ public class FieldsTest extends AbstractTouchKitIntegrationTest implements
 
         navigationView.setRightComponent(group);
 
-        addComponent(navigationView);
+		addComponent(navigationView);
 
         VerticalComponentGroup g = new VerticalComponentGroup("Basic fields");
 

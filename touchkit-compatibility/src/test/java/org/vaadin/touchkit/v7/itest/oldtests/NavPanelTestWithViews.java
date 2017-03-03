@@ -1,9 +1,8 @@
-package org.vaadin.touchkit.itest.oldtests;
+package org.vaadin.touchkit.v7.itest.oldtests;
 
 import java.util.Date;
 import java.util.logging.Logger;
 
-import org.vaadin.touchkit.ui.EmailField;
 import org.vaadin.touchkit.ui.HorizontalButtonGroup;
 import org.vaadin.touchkit.ui.NavigationButton;
 import org.vaadin.touchkit.ui.NavigationManager;
@@ -14,6 +13,7 @@ import org.vaadin.touchkit.ui.Switch;
 import org.vaadin.touchkit.ui.TabBarView;
 import org.vaadin.touchkit.ui.Toolbar;
 import org.vaadin.touchkit.ui.VerticalComponentGroup;
+import org.vaadin.touchkit.v7.ui.EmailField;
 
 import com.vaadin.server.ClassResource;
 import com.vaadin.server.Resource;
@@ -22,22 +22,22 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.v7.ui.CheckBox;
-import com.vaadin.v7.ui.ComboBox;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.ComponentContainer;
 import com.vaadin.ui.CssLayout;
-import com.vaadin.v7.ui.DateField;
 import com.vaadin.ui.Embedded;
 import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.Notification;
+import com.vaadin.ui.TabSheet.Tab;
+import com.vaadin.ui.UI;
+import com.vaadin.v7.ui.CheckBox;
+import com.vaadin.v7.ui.ComboBox;
+import com.vaadin.v7.ui.DateField;
 import com.vaadin.v7.ui.HorizontalLayout;
 import com.vaadin.v7.ui.Label;
 import com.vaadin.v7.ui.NativeSelect;
-import com.vaadin.ui.Notification;
 import com.vaadin.v7.ui.Slider;
-import com.vaadin.ui.TabSheet.Tab;
 import com.vaadin.v7.ui.TextField;
-import com.vaadin.ui.UI;
 import com.vaadin.v7.ui.VerticalLayout;
 import com.vaadin.v7.ui.themes.BaseTheme;
 
