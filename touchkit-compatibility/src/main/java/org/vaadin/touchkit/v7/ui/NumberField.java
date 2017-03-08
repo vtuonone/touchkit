@@ -1,4 +1,4 @@
-package org.vaadin.touchkit.ui;
+package org.vaadin.touchkit.v7.ui;
 
 import com.vaadin.v7.data.Property;
 import com.vaadin.v7.ui.TextField;

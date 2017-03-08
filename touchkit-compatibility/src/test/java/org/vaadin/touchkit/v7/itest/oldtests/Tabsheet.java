@@ -1,22 +1,22 @@
-package org.vaadin.touchkit.itest.oldtests;
+package org.vaadin.touchkit.v7.itest.oldtests;
 
 import java.util.Date;
 
-import org.vaadin.touchkit.AbstractTouchKitIntegrationTest;
-import org.vaadin.touchkit.ui.NumberField;
 import org.vaadin.touchkit.ui.Switch;
 import org.vaadin.touchkit.ui.TabBarView;
 import org.vaadin.touchkit.ui.VerticalComponentGroup;
+import org.vaadin.touchkit.v7.AbstractTouchKitIntegrationTest;
+import org.vaadin.touchkit.v7.ui.NumberField;
 
 import com.vaadin.server.ThemeResource;
-import com.vaadin.v7.ui.ComboBox;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;
+import com.vaadin.ui.TabSheet.Tab;
+import com.vaadin.v7.ui.ComboBox;
 import com.vaadin.v7.ui.DateField;
 import com.vaadin.v7.ui.InlineDateField;
 import com.vaadin.v7.ui.NativeSelect;
 import com.vaadin.v7.ui.Slider;
-import com.vaadin.ui.TabSheet.Tab;
 import com.vaadin.v7.ui.Table;
 
 public class Tabsheet extends AbstractTouchKitIntegrationTest {

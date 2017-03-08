@@ -6,7 +6,6 @@ import java.util.Locale;
 import org.vaadin.touchkit.AbstractTouchKitIntegrationTest;
 import org.vaadin.touchkit.ui.HorizontalButtonGroup;
 import org.vaadin.touchkit.ui.NavigationButton;
-import org.vaadin.touchkit.ui.NumberField;
 import org.vaadin.touchkit.ui.Switch;
 import org.vaadin.touchkit.ui.VerticalComponentGroup;
 
@@ -14,8 +13,8 @@ import com.vaadin.server.ExternalResource;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
-import com.vaadin.v7.ui.Label;
 import com.vaadin.ui.Link;
+import com.vaadin.v7.ui.Label;
 import com.vaadin.v7.ui.OptionGroup;
 import com.vaadin.v7.ui.TextField;
 
@@ -37,7 +36,7 @@ public class VerticalComponentGroupTest extends AbstractTouchKitIntegrationTest 
 
         verticalComponentGroup.addComponent(link);
         verticalComponentGroup.addComponent(new Switch("Switch"));
-        NumberField numberField = new NumberField("numberfield");
+		com.vaadin.ui.TextField numberField = new com.vaadin.ui.TextField("numberfield");
         verticalComponentGroup.addComponent(numberField);
 
         NavigationButton one = new NavigationButton("Navigation button");
@@ -70,7 +69,7 @@ public class VerticalComponentGroupTest extends AbstractTouchKitIntegrationTest 
                 .getComponentIterator();
         while (componentIterator.hasNext()) {
             Component next = componentIterator.next();
-            next.setWidth("" + 100.0 / (double)horizontalGroup.getComponentCount() + "%");
+            next.setWidth("" + 100.0 / horizontalGroup.getComponentCount() + "%");
         }
         verticalComponentGroup.addComponent(horizontalGroup);
 

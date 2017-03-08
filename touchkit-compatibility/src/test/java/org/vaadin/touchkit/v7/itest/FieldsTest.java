@@ -7,13 +7,13 @@ import org.vaadin.touchkit.ui.DatePicker;
 import org.vaadin.touchkit.ui.HorizontalButtonGroup;
 import org.vaadin.touchkit.ui.NavigationButton;
 import org.vaadin.touchkit.ui.NavigationView;
-import org.vaadin.touchkit.ui.NumberField;
 import org.vaadin.touchkit.ui.Popover;
 import org.vaadin.touchkit.ui.Switch;
 import org.vaadin.touchkit.ui.Toolbar;
 import org.vaadin.touchkit.ui.VerticalComponentGroup;
 import org.vaadin.touchkit.v7.AbstractTouchKitIntegrationTest;
 import org.vaadin.touchkit.v7.ui.EmailField;
+import org.vaadin.touchkit.v7.ui.NumberField;
 
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Button;

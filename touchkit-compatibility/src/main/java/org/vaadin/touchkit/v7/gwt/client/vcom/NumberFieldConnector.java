@@ -1,13 +1,13 @@
-package org.vaadin.touchkit.gwt.client.vcom;
+package org.vaadin.touchkit.v7.gwt.client.vcom;
 
-import org.vaadin.touchkit.gwt.client.ui.NumberFieldWidget;
+import org.vaadin.touchkit.v7.gwt.client.ui.NumberFieldWidget;
 
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.user.client.ui.Widget;
 import com.vaadin.shared.ui.Connect;
 import com.vaadin.v7.client.ui.textfield.TextFieldConnector;
 
-@Connect(org.vaadin.touchkit.ui.NumberField.class)
+@Connect(org.vaadin.touchkit.v7.ui.NumberField.class)
 public class NumberFieldConnector extends TextFieldConnector {
 
     @Override
