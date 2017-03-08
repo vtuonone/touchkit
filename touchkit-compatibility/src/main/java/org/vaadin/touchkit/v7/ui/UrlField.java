@@ -1,4 +1,4 @@
-package org.vaadin.touchkit.ui;
+package org.vaadin.touchkit.v7.ui;
 
 import java.net.MalformedURLException;
 import java.net.URL;

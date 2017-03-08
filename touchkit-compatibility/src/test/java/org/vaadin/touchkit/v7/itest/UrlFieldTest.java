@@ -1,14 +1,14 @@
-package org.vaadin.touchkit.itest;
+package org.vaadin.touchkit.v7.itest;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.vaadin.touchkit.AbstractTouchKitIntegrationTest;
-import org.vaadin.touchkit.ui.UrlField;
+import org.vaadin.touchkit.v7.AbstractTouchKitIntegrationTest;
+import org.vaadin.touchkit.v7.ui.UrlField;
 
+import com.vaadin.ui.Notification;
 import com.vaadin.v7.event.FieldEvents.TextChangeEvent;
 import com.vaadin.v7.event.FieldEvents.TextChangeListener;
-import com.vaadin.ui.Notification;
 import com.vaadin.v7.ui.TextField;
 
 public class UrlFieldTest extends AbstractTouchKitIntegrationTest {
@@ -19,7 +19,8 @@ public class UrlFieldTest extends AbstractTouchKitIntegrationTest {
         nf.setStyleName("urlfield");
         nf.setImmediate(true);
         nf.addTextChangeListener(new TextChangeListener() {
-            public void textChange(TextChangeEvent event) {
+            @Override
+			public void textChange(TextChangeEvent event) {
                 try {
                     Notification.show("New urlfield value: " + nf.getUrl());
                 } catch (MalformedURLException e) {
@@ -31,7 +32,8 @@ public class UrlFieldTest extends AbstractTouchKitIntegrationTest {
         final TextField tf = new TextField("TextField");
         tf.setImmediate(true);
         tf.addTextChangeListener(new TextChangeListener() {
-            public void textChange(TextChangeEvent event) {
+            @Override
+			public void textChange(TextChangeEvent event) {
                 try {
                     nf.setUrl(new URL(event.getText()));
                 } catch (MalformedURLException e) {
