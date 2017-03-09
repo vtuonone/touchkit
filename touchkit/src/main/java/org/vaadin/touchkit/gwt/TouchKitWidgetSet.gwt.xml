@@ -1,6 +1,6 @@
 <module>
     <!-- WS Compiler: manually edited -->
-    <inherits name="com.vaadin.v7.Vaadin7WidgetSet" />
+    <inherits name="com.vaadin.DefaultWidgetSet" />
     <inherits name="com.google.gwt.resources.Resources" />
 
     <define-property name="webkitvariant" values="std,ios7hswa,android2,ios7safari" />
@@ -17,7 +17,7 @@
     ]]></property-provider>
 
     <!-- Remove this ("soft permutation") once cache manifest linker and servlet
-        properly support any permutations -->
+    properly support any permutations -->
     <collapse-property name="webkitvariant" values="*" />
 
     <!-- load the cache manifest status indicator first of all -->
@@ -73,7 +73,7 @@
 
 
     <!-- Use annotation based widget loading strategy instead of the eager method.
-        Makes initial loading time smaller on a slow network -->
+    Makes initial loading time smaller on a slow network -->
     <generate-with
         class="org.vaadin.touchkit.gwt.TouchKitBundleLoaderFactory">
         <when-type-assignable
@@ -89,7 +89,7 @@
         name='touchkit.manifestlinker.additionalCacheRoot' is-multi-valued='true' />
 
     <define-linker name="touchkitcachemanifest"
-        class="org.vaadin.touchkit.gwt.CacheManifestLinker" />
+                   class="org.vaadin.touchkit.gwt.CacheManifestLinker" />
     <add-linker name="touchkitcachemanifest" />
 
     <entry-point
@@ -103,6 +103,6 @@
 
     <add-linker name="xsiframe" />
     <set-configuration-property name="devModeRedirectEnabled"
-        value="true" />
+                                value="true" />
 
 </module>

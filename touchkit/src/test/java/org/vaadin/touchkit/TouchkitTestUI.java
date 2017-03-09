@@ -6,24 +6,17 @@ import java.util.Collection;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
+import com.vaadin.annotations.Widgetset;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.AbstractComponent;
 import com.vaadin.ui.AbstractComponentContainer;
+import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.Component;
+import com.vaadin.ui.Grid;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.UI;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.event.FieldEvents.TextChangeEvent;
-import com.vaadin.v7.event.FieldEvents.TextChangeListener;
-import com.vaadin.v7.event.ItemClickEvent;
-import com.vaadin.v7.event.ItemClickEvent.ItemClickListener;
-import com.vaadin.v7.ui.CheckBox;
-import com.vaadin.v7.ui.HorizontalLayout;
-import com.vaadin.v7.ui.Label;
-import com.vaadin.v7.ui.Table;
-import com.vaadin.v7.ui.Table.ColumnGenerator;
-import com.vaadin.v7.ui.TextField;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
 
 @Theme("touchkit")
 @Title("TouchKit test app")
@@ -69,64 +62,35 @@ public class TouchkitTestUI extends UI {
         addTests(getClass().getPackage().getName() + ".itest", itestroot,
                 tests);
 
-        Table table = new Table();
-        final BeanItemContainer<Class<? extends AbstractComponent>> beanItemContainer = new BeanItemContainer<Class<? extends AbstractComponent>>(
-                tests);
-        table.setContainerDataSource(beanItemContainer);
-        table.setVisibleColumns(new Object[] { "simpleName" });
-        table.addGeneratedColumn("description", new ColumnGenerator() {
-            @Override
-            public Object generateCell(Table source, Object itemId,
-                    Object columnId) {
-                Class<?> c = (Class<?>) itemId;
-                try {
-                    AbstractComponent t = (AbstractComponent) c.newInstance();
-                    String description = t.getDescription();
-                    if (description == null) {
-                        description = "-";
-                    }
-                    ;
-                    Label label2 = new Label(description);
-                    // label2.setWidth("300px");
-                    // label2.setHeight("50px");
-                    return label2;
-                } catch (Exception e) {
-                    // e.printStackTrace();
+        Grid<Class<? extends AbstractComponent>> table = new Grid<>();
+        table.setItems(tests);
+        table.addColumn(c -> c.getSimpleName()).setCaption("name");
+        table.addColumn(c -> {
+            try {
+                AbstractComponent t = (AbstractComponent) c.newInstance();
+                String description = t.getDescription();
+                if (description == null) {
+                    description = "-";
                 }
-                return null;
+                return description;
+            } catch (Exception e) {
+                return "";
+                // e.printStackTrace();
             }
-        });
-        table.addItemClickListener(new ItemClickListener() {
-
-            @Override
-            public void itemClick(ItemClickEvent event) {
-                Class<?> itemId = (Class<?>) event.getItemId();
-                String canonicalName = itemId.getCanonicalName();
-                String debug = debugmode.getValue() ? "?debug" : "";
-                Page.getCurrent().open(canonicalName + debug, null);
-            }
+        }).setCaption("description");
+        table.addItemClickListener(event -> {
+            String canonicalName = event.getItem().getCanonicalName();
+            String debug = debugmode.getValue() ? "?debug" : "";
+            Page.getCurrent().open(canonicalName + debug, null);
         });
         table.setSizeFull();
-        table.setColumnCollapsingAllowed(true);
         debugmode.setValue(false);
         HorizontalLayout options = new HorizontalLayout();
         options.addComponent(debugmode);
-        TextField textField = new TextField();
-        textField.setInputPrompt("Filter");
-        textField.addTextChangeListener(new TextChangeListener() {
-
-            @Override
-            public void textChange(TextChangeEvent event) {
-
-                beanItemContainer.removeAllContainerFilters();
-                beanItemContainer.addContainerFilter("simpleName",
-                        event.getText(), true, false);
-            }
-        });
-        options.addComponent(textField);
         addComponent(options);
         content.addComponent(table);
         content.setExpandRatio(table, 1);
+        setTheme("valo");
     }
 
     CheckBox debugmode = new CheckBox("Open in debug");

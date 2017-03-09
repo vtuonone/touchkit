@@ -78,11 +78,11 @@
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<vaadin.version.maven>8.0.0</vaadin.version.maven>
+        <vaadin.version.maven>8.0.0</vaadin.version.maven>
         <vaadin.plugin.version>8.0.0</vaadin.plugin.version>
         <snapshot.repository.url>http://oss.sonatype.org/content/repositories/vaadin-snapshots/</snapshot.repository.url>
         <jetty.version>9.2.14.v20151106</jetty.version>
-		<Implementation-Version>${project.version}</Implementation-Version>
+        <Implementation-Version>${project.version}</Implementation-Version>
         <!-- Must not change this because of the Directory -->
         <Implementation-Title>TouchKit</Implementation-Title>
         <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
@@ -91,8 +91,8 @@
 
     <description>Provides components and features for mobile devices.</description>
 
-	<build>
-		<resources>
+    <build>
+        <resources>
             <!-- These are also needed for the sources required by the GWT compiler
             to be included in the produced JARs -->
             <resource>
@@ -102,8 +102,8 @@
                 <directory>src/main/resources</directory>
             </resource>
         </resources>
-		<plugins>
-			<plugin>
+        <plugins>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.5.3</version>
@@ -140,7 +140,7 @@
                     </descriptors>
                 </configuration>
             </plugin>
-			<plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.0.2</version>
@@ -192,8 +192,8 @@
                     </execution>
                 </executions>
             </plugin> 
-		</plugins>
-	</build>
+        </plugins>
+    </build>
 	
     <dependencies>
         <dependency>
@@ -202,30 +202,22 @@
             <version>${jetty.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- This ought to be transient dependency from Vaadin? -->
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-server</artifactId>
             <version>${vaadin.version.maven}</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-compatibility-server</artifactId>
             <version>${vaadin.version.maven}</version>
-            <scope>provided</scope>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-compatibility-themes</artifactId>
             <version>${vaadin.version.maven}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-compatibility-client</artifactId>
-            <version>${vaadin.version.maven}</version>
-            <scope>provided</scope>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>
@@ -243,6 +235,7 @@
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-themes</artifactId>
             <version>${vaadin.version.maven}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>commons-lang</groupId>

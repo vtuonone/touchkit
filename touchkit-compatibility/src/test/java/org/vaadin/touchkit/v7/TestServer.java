@@ -26,7 +26,7 @@ public class TestServer {
 
         final ServerConnector connector = new ServerConnector(server);
 
-        connector.setPort(7777);
+        connector.setPort(7778);
         server.setConnectors(new Connector[] { connector });
         WebAppContext context = new WebAppContext();
 
