@@ -7,7 +7,7 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
-import com.vaadin.v7.ui.themes.BaseTheme;
+import com.vaadin.ui.themes.ValoTheme;;
 
 public class ButtonTest extends AbstractTouchKitIntegrationTest implements
         ClickListener {
@@ -21,7 +21,7 @@ public class ButtonTest extends AbstractTouchKitIntegrationTest implements
 
         Button link = new Button();
         link.setCaption("link caption");
-        link.setStyleName(BaseTheme.BUTTON_LINK);
+		link.setStyleName(ValoTheme.BUTTON_LINK);
         link.addClickListener(this);
 
         addComponent(button);
