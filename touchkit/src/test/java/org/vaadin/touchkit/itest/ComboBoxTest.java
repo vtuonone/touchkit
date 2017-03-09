@@ -1,29 +1,18 @@
 package org.vaadin.touchkit.itest;
 
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.v7.ui.ComboBox;
-
 import org.vaadin.touchkit.AbstractTouchKitIntegrationTest;
 
-import com.vaadin.ui.Notification;
+import com.vaadin.ui.ComboBox;
 
-public class ComboBoxTest extends AbstractTouchKitIntegrationTest implements ClickListener {
+public class ComboBoxTest extends AbstractTouchKitIntegrationTest {
     public ComboBoxTest() {
         setDescription("This is a button test");
         
-        ComboBox comboBox = new ComboBox();
-        comboBox.addItem("foo");
-        comboBox.addItem("bar");
+		ComboBox<String> comboBox = new ComboBox<>();
+		comboBox.setItems("foo", "bar");
         
         comboBox.setWidth("200px");
         
         addComponent(comboBox);
     }
-
-    @Override
-    public void buttonClick(ClickEvent event) {
-        Notification.show("Clicked");
-    }
-
 }
