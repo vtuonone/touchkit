@@ -13,10 +13,10 @@ import com.vaadin.server.ExternalResource;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
-import com.vaadin.v7.ui.Label;
-import com.vaadin.v7.ui.OptionGroup;
-import com.vaadin.v7.ui.TextField;
+import com.vaadin.ui.RadioButtonGroup;
+import com.vaadin.ui.TextField;
 
 public class VerticalComponentGroupTest extends AbstractTouchKitIntegrationTest {
 
@@ -82,15 +82,12 @@ public class VerticalComponentGroupTest extends AbstractTouchKitIntegrationTest 
         addComponent(verticalComponentGroup);
     }
 
-    private OptionGroup getOptiongroup() {
-        OptionGroup languageSelect = new OptionGroup();
+	private RadioButtonGroup<Locale> getOptiongroup() {
+		RadioButtonGroup<Locale> languageSelect = new RadioButtonGroup<>();
         Locale[] availableLocales = new Locale[] { Locale.CANADA,
                 Locale.ENGLISH, Locale.GERMAN };
-        for (Locale locale : availableLocales) {
-            languageSelect.addItem(locale);
-            languageSelect.setItemCaption(locale,
-                    locale.getDisplayLanguage(locale));
-        }
+		languageSelect.setItems(availableLocales);
+		languageSelect.setItemCaptionGenerator(locale -> locale.getDisplayLanguage());
         languageSelect.setValue(Locale.ENGLISH);
         return languageSelect;
     }

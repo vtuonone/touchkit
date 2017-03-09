@@ -7,7 +7,7 @@ import org.vaadin.touchkit.ui.NavigationView;
 
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComponentContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
 
 public class ColorButtonsTest extends AbstractTouchKitIntegrationTest {
 

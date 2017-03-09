@@ -4,9 +4,9 @@ import org.vaadin.touchkit.AbstractTouchKitIntegrationTest;
 import org.vaadin.touchkit.ui.NavigationView;
 
 import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.CssLayout;
-import com.vaadin.v7.ui.Label;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 
 public class NavigationViewWithSaveCancelTest extends
@@ -27,21 +27,11 @@ public class NavigationViewWithSaveCancelTest extends
 
         NavigationView navView = new NavigationView();
         navView.setRightComponent(new Button("Save",
-                new Button.ClickListener() {
-                    @Override
-                    public void buttonClick(ClickEvent event) {
-                        Notification.show("Save! :)");
-                    }
-                }));
+                (ClickListener) event -> Notification.show("Save! :)")));
         navView.setCaption("Save or Cancel?");
         navView.setContent(layout);
         navView.setLeftComponent(new Button("Cancel",
-                new Button.ClickListener() {
-                    @Override
-                    public void buttonClick(ClickEvent event) {
-                        Notification.show("Cancel :(");
-                    }
-                }));
+                (ClickListener) event -> Notification.show("Cancel :(")));
         return navView;
     }
 

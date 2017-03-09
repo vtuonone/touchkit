@@ -8,7 +8,7 @@ import org.vaadin.touchkit.ui.Toolbar;
 import org.vaadin.touchkit.ui.VerticalComponentGroup;
 
 import com.vaadin.ui.Button;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
 
 public class VerticalLayoutScrolling extends AbstractTouchKitIntegrationTest {
 

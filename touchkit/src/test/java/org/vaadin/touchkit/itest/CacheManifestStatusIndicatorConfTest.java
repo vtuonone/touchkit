@@ -6,7 +6,7 @@ import org.vaadin.touchkit.settings.ApplicationCacheSettings;
 
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Button;
-import com.vaadin.v7.ui.TextField;
+import com.vaadin.ui.TextField;
 
 public class CacheManifestStatusIndicatorConfTest extends
         AbstractTouchKitIntegrationTest {
@@ -23,18 +23,15 @@ public class CacheManifestStatusIndicatorConfTest extends
         updateCheckIntervalTF.setValue("1800");
 
         Button commit = new Button("Commit");
-        commit.addClickListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent event) {
-                ApplicationCacheSettings applicationCacheSettings = ((TouchKitServlet) VaadinServlet
-                        .getCurrent()).getTouchKitSettings()
-                        .getApplicationCacheSettings();
-                applicationCacheSettings.setUpdateNowMessage(updateNowMessageTF
-                        .getValue());
-                applicationCacheSettings.setUpdateCheckInterval(Integer
-                        .valueOf(updateCheckIntervalTF.getValue()));
-            }
-        });
+        commit.addClickListener(event -> {
+		    ApplicationCacheSettings applicationCacheSettings = ((TouchKitServlet) VaadinServlet
+		            .getCurrent()).getTouchKitSettings()
+		            .getApplicationCacheSettings();
+		    applicationCacheSettings.setUpdateNowMessage(updateNowMessageTF
+		            .getValue());
+		    applicationCacheSettings.setUpdateCheckInterval(Integer
+		            .valueOf(updateCheckIntervalTF.getValue()));
+		});
 
         addComponent(updateNowMessageTF);
         addComponent(updateCheckIntervalTF);

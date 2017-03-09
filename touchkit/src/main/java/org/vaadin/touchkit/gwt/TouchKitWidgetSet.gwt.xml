@@ -44,12 +44,6 @@
     </replace-with>
 
     <replace-with
-        class="org.vaadin.touchkit.gwt.client.Android2NativeSelectReplacement">
-        <when-type-is class="com.vaadin.client.ui.VNativeSelect" />
-        <when-property-is name="webkitvariant" value="android2" />
-    </replace-with>
-
-    <replace-with
         class="org.vaadin.touchkit.gwt.client.ui.VSwipeViewIEImpl">
         <when-type-is class="org.vaadin.touchkit.gwt.client.ui.VSwipeView" />
         <any>

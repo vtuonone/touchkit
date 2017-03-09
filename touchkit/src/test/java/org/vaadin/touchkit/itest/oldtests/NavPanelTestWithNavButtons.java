@@ -2,12 +2,10 @@ package org.vaadin.touchkit.itest.oldtests;
 
 import org.vaadin.touchkit.ui.NavigationButton;
 import org.vaadin.touchkit.ui.NavigationManager;
-import org.vaadin.touchkit.ui.NavigationButton.NavigationButtonClickEvent;
-import org.vaadin.touchkit.ui.NavigationButton.NavigationButtonClickListener;
 
 import com.vaadin.ui.ComponentContainer;
 import com.vaadin.ui.CssLayout;
-import com.vaadin.v7.ui.Label;
+import com.vaadin.ui.Label;
 
 public class NavPanelTestWithNavButtons extends NavigationManager implements
         ComponentContainer {
@@ -64,24 +62,22 @@ public class NavPanelTestWithNavButtons extends NavigationManager implements
             addComponent(new Label("Nav view " + counter++));
             addComponent(prev);
             addComponent(next);
-            prev.addClickListener(new NavigationButtonClickListener() {
-                public void buttonClick(NavigationButtonClickEvent event) {
-                    /*
-                     * Hack to make test somewhat working.
-                     * addAttribute(Paintable) don't support painting un
-                     * attached components properly. It works but breaks subtree
-                     * caching in some cases. This is handled in
-                     * NavigatioButton. Thats why we need to force repaint of
-                     * prev button in next visible view. This will be
-                     * automatically handled by NavigationManager for
-                     * NavigationViews.
-                     */
-                    SimpleNavView targetView = (SimpleNavView) prev
-                            .getTargetView();
-                    targetView.prev.requestRepaint();
-                    targetView.next.requestRepaint();
-                }
-            });
+            prev.addClickListener(event -> {
+			    /*
+			     * Hack to make test somewhat working.
+			     * addAttribute(Paintable) don't support painting un
+			     * attached components properly. It works but breaks subtree
+			     * caching in some cases. This is handled in
+			     * NavigatioButton. Thats why we need to force repaint of
+			     * prev button in next visible view. This will be
+			     * automatically handled by NavigationManager for
+			     * NavigationViews.
+			     */
+			    SimpleNavView targetView = (SimpleNavView) prev
+			            .getTargetView();
+			    targetView.prev.requestRepaint();
+			    targetView.next.requestRepaint();
+			});
         }
     }
 

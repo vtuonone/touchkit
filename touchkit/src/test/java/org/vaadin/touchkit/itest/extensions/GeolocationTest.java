@@ -6,8 +6,8 @@ import org.vaadin.touchkit.extensions.PositionCallback;
 import org.vaadin.touchkit.gwt.client.vcom.Position;
 
 import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.v7.ui.Label;
+import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 
 @SuppressWarnings("serial")
@@ -20,12 +20,7 @@ public class GeolocationTest extends AbstractTouchKitIntegrationTest implements
         setDescription("Test Geolocation");
 
         Button detectButton = new Button("Detect location",
-                new Button.ClickListener() {
-                    @Override
-                    public void buttonClick(ClickEvent event) {
-                        Geolocator.detect(GeolocationTest.this);
-                    }
-                });
+                (ClickListener) event -> Geolocator.detect(GeolocationTest.this));
         addComponent(detectButton);
         locationLabel = new Label();
         addComponent(locationLabel);

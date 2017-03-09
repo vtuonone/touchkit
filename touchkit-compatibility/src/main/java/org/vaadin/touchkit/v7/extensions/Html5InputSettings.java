@@ -1,8 +1,8 @@
-package org.vaadin.touchkit.extensions;
+package org.vaadin.touchkit.v7.extensions;
 
 import java.util.Locale;
 
-import org.vaadin.touchkit.gwt.client.vcom.Html5InputSettingsState;
+import org.vaadin.touchkit.v7.gwt.client.vcom.Html5InputSettingsState;
 
 import com.vaadin.server.AbstractExtension;
 import com.vaadin.v7.ui.TextField;

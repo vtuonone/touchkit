@@ -14,7 +14,7 @@
  * the License.
  */
 
-package org.vaadin.touchkit.gwt.client;
+package org.vaadin.touchkit.v7.gwt.client;
 
 import java.util.ArrayList;
 import java.util.Iterator;

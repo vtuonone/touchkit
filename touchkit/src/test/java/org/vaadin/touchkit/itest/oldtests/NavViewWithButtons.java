@@ -9,8 +9,7 @@ import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.CssLayout;
-import com.vaadin.v7.ui.HorizontalLayout;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Notification;
 
 
@@ -83,7 +82,8 @@ class NavViewWithButtonsT extends NavigationView implements ClickListener {
 
     }
 
-    public void buttonClick(ClickEvent event) {
+    @Override
+	public void buttonClick(ClickEvent event) {
         Notification.show("clicked");
     }
 }

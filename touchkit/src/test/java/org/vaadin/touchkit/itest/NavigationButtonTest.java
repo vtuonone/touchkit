@@ -9,7 +9,7 @@ import org.vaadin.touchkit.ui.VerticalComponentGroup;
 
 import com.vaadin.ui.ComponentContainer;
 import com.vaadin.ui.CssLayout;
-import com.vaadin.v7.ui.Label;
+import com.vaadin.ui.Label;
 
 public class NavigationButtonTest extends AbstractTouchKitIntegrationTest {
 

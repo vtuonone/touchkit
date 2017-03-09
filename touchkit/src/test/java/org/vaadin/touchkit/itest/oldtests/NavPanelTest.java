@@ -8,7 +8,7 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.ComponentContainer;
 import com.vaadin.ui.CssLayout;
-import com.vaadin.v7.ui.Label;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 
 @Ignore
@@ -43,7 +43,8 @@ public class NavPanelTest extends NavigationManager implements
         return cssLayout;
     }
 
-    public void buttonClick(ClickEvent event) {
+    @Override
+	public void buttonClick(ClickEvent event) {
         if (event.getButton().getCaption().equals("Back")) {
             navigateBack();
         } else {

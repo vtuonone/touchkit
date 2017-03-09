@@ -3,14 +3,10 @@ package org.vaadin.touchkit.itest.navigationmanager;
 import org.vaadin.touchkit.AbstractTouchKitIntegrationTest;
 import org.vaadin.touchkit.ui.NavigationButton;
 import org.vaadin.touchkit.ui.NavigationManager;
-import org.vaadin.touchkit.ui.NavigationButton.NavigationButtonClickEvent;
-import org.vaadin.touchkit.ui.NavigationButton.NavigationButtonClickListener;
-import org.vaadin.touchkit.ui.NavigationManager.NavigationEvent;
-import org.vaadin.touchkit.ui.NavigationManager.NavigationListener;
 import org.vaadin.touchkit.ui.NavigationManager.NavigationEvent.Direction;
 
 import com.vaadin.ui.CssLayout;
-import com.vaadin.v7.ui.Label;
+import com.vaadin.ui.Label;
 
 public class SimpleTestWithNavigationButtons extends
         AbstractTouchKitIntegrationTest {
@@ -62,28 +58,19 @@ public class SimpleTestWithNavigationButtons extends
         button = new NavigationButton("-->");
         pL.addComponent(button);
         button.setTargetView(cL);
-        button.addClickListener(new NavigationButtonClickListener() {
-
-            @Override
-            public void buttonClick(NavigationButtonClickEvent event) {
-                navigationManager.setNextComponent(nL);
-            }
-        });
+        button.addClickListener(event -> navigationManager.setNextComponent(nL));
 
         navigationManager.setPreviousComponent(pL);
         navigationManager.setCurrentComponent(cL);
         navigationManager.setNextComponent(nL);
 
-        navigationManager.addNavigationListener(new NavigationListener() {
-            @Override
-            public void navigate(NavigationEvent event) {
-                if (navigationManager.getCurrentComponent() == nL) {
-                    if (event.getDirection() == Direction.FORWARD) {
-                        navigationManager.setNextComponent(yetAnother);
-                    }
-                }
-            }
-        });
+        navigationManager.addNavigationListener(event -> {
+		    if (navigationManager.getCurrentComponent() == nL) {
+		        if (event.getDirection() == Direction.FORWARD) {
+		            navigationManager.setNextComponent(yetAnother);
+		        }
+		    }
+		});
 
         addComponent(navigationManager);
 

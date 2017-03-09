@@ -1,15 +1,13 @@
-package org.vaadin.touchkit.itest;
+package org.vaadin.touchkit.v7.itest;
 
-import org.vaadin.touchkit.AbstractTouchKitIntegrationTest;
-import org.vaadin.touchkit.extensions.Html5InputSettings;
 import org.vaadin.touchkit.ui.VerticalComponentGroup;
+import org.vaadin.touchkit.v7.AbstractTouchKitIntegrationTest;
+import org.vaadin.touchkit.v7.extensions.Html5InputSettings;
 
+import com.vaadin.ui.Button;
 import com.vaadin.v7.data.fieldgroup.FieldGroup;
 import com.vaadin.v7.data.fieldgroup.FieldGroup.CommitException;
 import com.vaadin.v7.data.util.BeanItem;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.v7.ui.TextField;
 
 public class Html5InputExtensionTest extends AbstractTouchKitIntegrationTest {
@@ -53,24 +51,20 @@ public class Html5InputExtensionTest extends AbstractTouchKitIntegrationTest {
         verticalComponentGroup.addComponent(any);
         Button button = new Button();
         button.setCaption("Apply");
-        button.addClickListener(new ClickListener() {
+        button.addClickListener(event -> {
+		    try {
+		        fieldGroup.commit();
+		        String value = any.getValue();
+		        if (value != null) {
+		            String[] split = value.split(":");
+		            html5InputSettings.setProperty(split[0], split[1]);
+		            any.setValue(null);
+		        }
+		    } catch (CommitException e) {
+		        e.printStackTrace();
+		    }
 
-            @Override
-            public void buttonClick(ClickEvent event) {
-                try {
-                    fieldGroup.commit();
-                    String value = any.getValue();
-                    if (value != null) {
-                        String[] split = value.split(":");
-                        html5InputSettings.setProperty(split[0], split[1]);
-                        any.setValue(null);
-                    }
-                } catch (CommitException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
+		});
         verticalComponentGroup.addComponent(button);
         addComponent(verticalComponentGroup);
 

@@ -6,10 +6,8 @@ import org.vaadin.touchkit.ui.NavigationView;
 import org.vaadin.touchkit.ui.TabBarView;
 
 import com.vaadin.server.ThemeResource;
-import com.vaadin.v7.shared.ui.label.ContentMode;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.v7.ui.Label;
+import com.vaadin.shared.ui.ContentMode;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.TabSheet.Tab;
 
 public class TabBarInNavigationViewTest extends AbstractTouchKitIntegrationTest {

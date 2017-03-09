@@ -1,22 +1,22 @@
-package org.vaadin.touchkit.gwt.client.vcom;
+package org.vaadin.touchkit.v7.gwt.client.vcom;
 
 import java.util.List;
 
 import org.vaadin.touchkit.gwt.client.ui.VerticalComponentGroupWidget;
-import org.vaadin.touchkit.ui.VerticalComponentGroup;
+import org.vaadin.touchkit.v7.ui.VerticalComponentGroup;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.Widget;
 import com.vaadin.client.ComponentConnector;
 import com.vaadin.client.ConnectorHierarchyChangeEvent;
 import com.vaadin.client.communication.StateChangeEvent;
-import com.vaadin.client.ui.AbstractFieldConnector;
 import com.vaadin.client.ui.AbstractLayoutConnector;
 import com.vaadin.client.ui.Icon;
 import com.vaadin.shared.ComponentConstants;
 import com.vaadin.shared.communication.URLReference;
 import com.vaadin.shared.ui.ComponentStateUtil;
 import com.vaadin.shared.ui.Connect;
+import com.vaadin.v7.client.ui.AbstractFieldConnector;
 
 @SuppressWarnings("serial")
 @Connect(VerticalComponentGroup.class)

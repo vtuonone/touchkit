@@ -9,13 +9,11 @@ import org.vaadin.touchkit.ui.NavigationView;
 import org.vaadin.touchkit.ui.VerticalComponentGroup;
 
 import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;
-import com.vaadin.v7.ui.Label;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
-import com.vaadin.v7.ui.TextField;
+import com.vaadin.ui.TextField;
 
 public class ButtonsInComponentGroups extends AbstractTouchKitIntegrationTest {
 
@@ -26,47 +24,38 @@ public class ButtonsInComponentGroups extends AbstractTouchKitIntegrationTest {
         CssLayout l = new CssLayout();
 
         Button button = new Button("Button not in a component group");
-        button.addClickListener(new ClickListener() {
-            @Override
-            public void buttonClick(ClickEvent event) {
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Notification.show("Clicked");
-            }
-        });
+        button.addClickListener(event -> {
+		    try {
+		        Thread.sleep(5000);
+		    } catch (InterruptedException e) {
+		        e.printStackTrace();
+		    }
+		    Notification.show("Clicked");
+		});
         l.addComponent(button);
         
         button = new Button("Primary button");
         button.setStyleName(StyleNames.BUTTON_BLUE);
-        button.addClickListener(new ClickListener() {
-            @Override
-            public void buttonClick(ClickEvent event) {
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Notification.show("Clicked");
-            }
-        });
+        button.addClickListener(event -> {
+		    try {
+		        Thread.sleep(5000);
+		    } catch (InterruptedException e) {
+		        e.printStackTrace();
+		    }
+		    Notification.show("Clicked");
+		});
         l.addComponent(button);
 
         button = new Button("Danger button");
         button.setStyleName(StyleNames.BUTTON_RED);
-        button.addClickListener(new ClickListener() {
-            @Override
-            public void buttonClick(ClickEvent event) {
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Notification.show("Clicked");
-            }
-        });
+        button.addClickListener(event -> {
+		    try {
+		        Thread.sleep(5000);
+		    } catch (InterruptedException e) {
+		        e.printStackTrace();
+		    }
+		    Notification.show("Clicked");
+		});
         l.addComponent(button);
 
 

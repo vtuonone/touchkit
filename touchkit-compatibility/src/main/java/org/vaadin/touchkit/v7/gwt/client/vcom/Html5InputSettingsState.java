@@ -1,4 +1,4 @@
-package org.vaadin.touchkit.gwt.client.vcom;
+package org.vaadin.touchkit.v7.gwt.client.vcom;
 
 import java.util.HashMap;
 import java.util.Map;
