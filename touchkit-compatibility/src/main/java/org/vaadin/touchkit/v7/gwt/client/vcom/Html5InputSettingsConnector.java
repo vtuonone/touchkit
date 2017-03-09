@@ -1,8 +1,8 @@
-package org.vaadin.touchkit.gwt.client.vcom;
+package org.vaadin.touchkit.v7.gwt.client.vcom;
 
 import java.util.Map.Entry;
 
-import org.vaadin.touchkit.extensions.Html5InputSettings;
+import org.vaadin.touchkit.v7.extensions.Html5InputSettings;
 
 import com.google.gwt.dom.client.InputElement;
 import com.vaadin.client.ServerConnector;

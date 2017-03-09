@@ -1,8 +1,8 @@
-package org.vaadin.touchkit.itest;
+package org.vaadin.touchkit.v7.itest;
 
 import org.vaadin.touchkit.AbstractTouchKitIntegrationTest;
-import org.vaadin.touchkit.extensions.Html5InputSettings;
 import org.vaadin.touchkit.ui.VerticalComponentGroup;
+import org.vaadin.touchkit.v7.extensions.Html5InputSettings;
 
 import com.vaadin.v7.data.fieldgroup.FieldGroup;
 import com.vaadin.v7.data.fieldgroup.FieldGroup.CommitException;
