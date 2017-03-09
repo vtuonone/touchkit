@@ -6,8 +6,8 @@ import java.util.Date;
 import java.util.Locale;
 
 import org.vaadin.touchkit.gwt.client.vcom.DatePickerServerRpc;
-import org.vaadin.touchkit.gwt.client.vcom.DatePickerState;
-import org.vaadin.touchkit.gwt.client.vcom.DatePickerState.Resolution;
+import org.vaadin.touchkit.v7.gwt.client.vcom.DatePickerState;
+import org.vaadin.touchkit.v7.gwt.client.vcom.DatePickerState.Resolution;
 
 import com.vaadin.v7.ui.AbstractField;
 import com.vaadin.v7.ui.DateField;

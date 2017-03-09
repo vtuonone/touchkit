@@ -6,8 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import org.vaadin.touchkit.gwt.client.vcom.DatePickerState.Resolution;
 import org.vaadin.touchkit.v7.AbstractTouchKitIntegrationTest;
+import org.vaadin.touchkit.v7.gwt.client.vcom.DatePickerState.Resolution;
 import org.vaadin.touchkit.v7.ui.DatePicker;
 
 import com.ibm.icu.util.Calendar;
