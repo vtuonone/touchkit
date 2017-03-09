@@ -6,8 +6,9 @@ import org.vaadin.touchkit.extensions.LocalStorageCallback;
 
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Notification;
-import com.vaadin.v7.ui.TextField;
+import com.vaadin.ui.TextField;
 
 @SuppressWarnings("serial")
 public class LocalStorageTest extends AbstractTouchKitIntegrationTest {
@@ -22,33 +23,23 @@ public class LocalStorageTest extends AbstractTouchKitIntegrationTest {
         addComponent(valueField);
 
         Button detectButton = new Button("Detect value",
-                new Button.ClickListener() {
-                    @Override
-                    public void buttonClick(ClickEvent event) {
-                        LocalStorage.detectValue(keyField.getValue(),
-                                new LocalStorageCallback() {
-                                    @Override
-                                    public void onSuccess(String value) {
-                                        Notification.show("Value received:" + value);
-                                        valueField.setValue(value);
-                                    }
+                (ClickListener) event -> LocalStorage.detectValue(keyField.getValue(),
+				        new LocalStorageCallback() {
+				            @Override
+				            public void onSuccess(String value) {
+				                Notification.show("Value received:" + value);
+				                valueField.setValue(value);
+				            }
 
-                                    @Override
-                                    public void onFailure(FailureEvent error) {
-                                        Notification.show("Value retrieval failed: " + error.getMessage());
-                                    }
-                                });
-                    }
-                });
+				            @Override
+				            public void onFailure(FailureEvent error) {
+				                Notification.show("Value retrieval failed: " + error.getMessage());
+				            }
+				        }));
         addComponent(detectButton);
         Button saveButton = new Button("Save value",
-                new Button.ClickListener() {
-                    @Override
-                    public void buttonClick(ClickEvent event) {
-                        LocalStorage.get().put(keyField.getValue(),
-                                valueField.getValue());
-                    }
-                });
+                (ClickListener) event -> LocalStorage.get().put(keyField.getValue(),
+				        valueField.getValue()));
         addComponent(saveButton);
         
         Button saveInsaneButton = new Button("Save huge value (should fail)",
