@@ -11,12 +11,12 @@ import org.vaadin.touchkit.gwt.client.vcom.DatePickerState.Resolution;
 import org.vaadin.touchkit.ui.DatePicker;
 
 import com.ibm.icu.util.Calendar;
-import com.vaadin.v7.data.Property;
-import com.vaadin.v7.data.Property.ValueChangeEvent;
-import com.vaadin.v7.data.Property.ValueChangeListener;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.v7.data.Property;
+import com.vaadin.v7.data.Property.ValueChangeEvent;
+import com.vaadin.v7.data.Property.ValueChangeListener;
 import com.vaadin.v7.ui.CheckBox;
 import com.vaadin.v7.ui.HorizontalLayout;
 import com.vaadin.v7.ui.Label;
@@ -42,18 +42,15 @@ public class DatePickerTest extends AbstractTouchKitIntegrationTest {
 
         createResolutionOptions();
 
+		pickerALabel = new Label(pickerA.getValue().toString());
+		pickerALabel.setCaption("Value sent by client");
         addComponent(pickerA);
-        pickerA.addValueChangeListener(new Property.ValueChangeListener() {
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                Date value = (Date) event.getProperty().getValue();
+		pickerA.addValueChangeListener(event -> {
+			Date value = event.getValue();
                 pickerALabel.setValue(value != null ? value.toString() : "null");
             }
-        });
+		);
 
-        pickerALabel = new Label(pickerA.getValue().toString());
-        pickerALabel.setCaption("Value sent by client");
         addComponent(pickerALabel);
 
         HorizontalLayout optionsLayout = new HorizontalLayout();

@@ -15,7 +15,7 @@ import com.vaadin.client.LocaleNotLoadedException;
 import com.vaadin.client.LocaleService;
 import com.vaadin.client.communication.RpcProxy;
 import com.vaadin.client.communication.StateChangeEvent;
-import com.vaadin.v7.client.ui.AbstractFieldConnector;
+import com.vaadin.client.ui.AbstractFieldConnector;
 import com.vaadin.shared.ui.Connect;
 
 /**
@@ -96,7 +96,7 @@ public class DatePickerConnector extends AbstractFieldConnector implements
 
         getWidget().setUseNative(getState().useNative);
         getWidget().setResolution(resolution);
-        getWidget().setDate(parseDateInWireFormat(getState().date));
+		getWidget().setDate(getState().date);
 
         getWidget().setMin(parseDateInWireFormat(getState().min));
         getWidget().setMax(parseDateInWireFormat(getState().max));

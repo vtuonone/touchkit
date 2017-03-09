@@ -9,8 +9,8 @@ import org.vaadin.touchkit.gwt.client.vcom.DatePickerServerRpc;
 import org.vaadin.touchkit.gwt.client.vcom.DatePickerState;
 import org.vaadin.touchkit.gwt.client.vcom.DatePickerState.Resolution;
 
-import com.vaadin.v7.ui.AbstractField;
-import com.vaadin.v7.ui.DateField;
+import com.vaadin.ui.AbstractField;
+import com.vaadin.ui.DateField;
 
 /**
  * DatePicker is a field used to ask time values from the user. In contrast to
@@ -62,11 +62,6 @@ public class DatePicker extends AbstractField<Date> {
     };
 
     @Override
-    public Class<Date> getType() {
-        return Date.class;
-    }
-
-    @Override
     protected DatePickerState getState() {
         return (DatePickerState) super.getState();
     }
@@ -75,12 +70,12 @@ public class DatePicker extends AbstractField<Date> {
     public void beforeClientResponse(boolean initial) {
         super.beforeClientResponse(initial);
 
-        Date value = getValue();
-        if (value == null) {
-            getState().date = null;
-        } else {
-            getState().date = getFormat().format(getValue());
-        }
+		// Date value = getValue();
+		// if (value == null) {
+		// getState().date = null;
+		// } else {
+		// getState().date = getFormat().format(getValue());
+		// }
 
         Locale locale = getLocale();
 
@@ -216,4 +211,14 @@ public class DatePicker extends AbstractField<Date> {
     public Date getMax() {
         return fromStr(getState().max);
     }
+
+	@Override
+	public Date getValue() {
+		return getState().date;
+	}
+
+	@Override
+	protected void doSetValue(Date value) {
+		getState().date = value;
+	}
 }

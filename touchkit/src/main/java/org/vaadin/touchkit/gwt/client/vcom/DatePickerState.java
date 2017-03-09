@@ -1,6 +1,8 @@
 package org.vaadin.touchkit.gwt.client.vcom;
 
-import com.vaadin.v7.shared.AbstractFieldState;
+import java.util.Date;
+
+import com.vaadin.shared.AbstractFieldState;
 
 /**
  * State class for DatePicker
@@ -25,7 +27,7 @@ public class DatePickerState extends AbstractFieldState {
     }
 
     public Resolution resolution;
-    public String date;
+	public Date date;
     public String min;
     public String max;
     public boolean useNative = true;
