@@ -1,7 +1,9 @@
-package org.vaadin.touchkit.ui;
+package org.vaadin.touchkit.v7.ui;
 
-import com.vaadin.data.HasValue;
+import org.vaadin.touchkit.ui.AbstractComponentGroup;
+
 import com.vaadin.ui.Component;
+import com.vaadin.v7.ui.Field;
 
 /**
  * The VerticalComponentGroup is a layout to group controls vertically. Unlike
@@ -52,7 +54,7 @@ public class VerticalComponentGroup extends AbstractComponentGroup {
     }
 
     private void verifySaneFieldWidth(Component component) {
-		if ((component instanceof HasValue<?>) && component.getWidth() < 0) {
+        if ((component instanceof Field) && component.getWidth() < 0) {
             component.setWidth("100%");
         }
     }

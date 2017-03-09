@@ -10,13 +10,13 @@ import com.google.gwt.user.client.ui.Widget;
 import com.vaadin.client.ComponentConnector;
 import com.vaadin.client.ConnectorHierarchyChangeEvent;
 import com.vaadin.client.communication.StateChangeEvent;
+import com.vaadin.client.ui.AbstractFieldConnector;
 import com.vaadin.client.ui.AbstractLayoutConnector;
 import com.vaadin.client.ui.Icon;
 import com.vaadin.shared.ComponentConstants;
 import com.vaadin.shared.communication.URLReference;
 import com.vaadin.shared.ui.ComponentStateUtil;
 import com.vaadin.shared.ui.Connect;
-import com.vaadin.v7.client.ui.AbstractFieldConnector;
 
 @SuppressWarnings("serial")
 @Connect(VerticalComponentGroup.class)
