@@ -1,7 +1,7 @@
-package org.vaadin.touchkit.gwt.client.vcom;
+package org.vaadin.touchkit.v7.gwt.client.vcom;
 
 import org.vaadin.touchkit.gwt.client.ui.VSwitch;
-import org.vaadin.touchkit.ui.Switch;
+import org.vaadin.touchkit.v7.ui.Switch;
 
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.dom.client.BlurEvent;
@@ -18,11 +18,11 @@ import com.vaadin.client.EventHelper;
 import com.vaadin.client.VTooltip;
 import com.vaadin.client.communication.RpcProxy;
 import com.vaadin.client.communication.StateChangeEvent;
-import com.vaadin.client.ui.AbstractFieldConnector;
 import com.vaadin.shared.communication.FieldRpc.FocusAndBlurServerRpc;
 import com.vaadin.shared.ui.Connect;
-import com.vaadin.shared.ui.checkbox.CheckBoxServerRpc;
-import com.vaadin.shared.ui.checkbox.CheckBoxState;
+import com.vaadin.v7.client.ui.AbstractFieldConnector;
+import com.vaadin.v7.shared.ui.checkbox.CheckBoxServerRpc;
+import com.vaadin.v7.shared.ui.checkbox.CheckBoxState;
 
 @Connect(Switch.class)
 public class SwitchConnector extends AbstractFieldConnector implements
@@ -48,8 +48,9 @@ public class SwitchConnector extends AbstractFieldConnector implements
             public void onValueChange(ValueChangeEvent<Boolean> event) {
             	getState().checked = getWidget().getValue();
             	rpc.setChecked(event.getValue(), null);
-
-				getConnection().sendPendingVariableChanges();
+                if (getState().immediate) {
+                        getConnection().sendPendingVariableChanges();
+                    }            
                 }
         });
     }
@@ -104,6 +105,7 @@ public class SwitchConnector extends AbstractFieldConnector implements
 
         getWidget().setValue(getState().checked);
 
+        // getState().isImmediate();
     }
 
     @Override
