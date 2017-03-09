@@ -10,12 +10,10 @@ import org.vaadin.touchkit.ui.VerticalComponentGroup;
 import com.vaadin.server.ClassResource;
 import com.vaadin.server.Resource;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;
-import com.vaadin.v7.ui.Label;
-import com.vaadin.v7.ui.TextField;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.TextField;
 
 public class MoreButtonsInComponentGroups extends AbstractTouchKitIntegrationTest {
 
@@ -100,17 +98,14 @@ public class MoreButtonsInComponentGroups extends AbstractTouchKitIntegrationTes
         horizontalComponentGroup.addComponent(c);
         
         c = new Button("T");
-        c.addClickListener(new ClickListener() {
-            @Override
-            public void buttonClick(ClickEvent event) {
-                Button b = event.getButton();
-                if(GREEN.equals(b.getStyleName())) {
-                    b.setStyleName(null);
-                } else {
-                    b.setStyleName(GREEN);
-                }
-            }
-        });
+        c.addClickListener(event -> {
+		    Button b = event.getButton();
+		    if(GREEN.equals(b.getStyleName())) {
+		        b.setStyleName(null);
+		    } else {
+		        b.setStyleName(GREEN);
+		    }
+		});
         c.addStyleName(GREEN);
         horizontalComponentGroup.addComponent(c);
         

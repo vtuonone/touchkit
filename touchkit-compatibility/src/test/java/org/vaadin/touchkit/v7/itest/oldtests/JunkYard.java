@@ -1,4 +1,4 @@
-package org.vaadin.touchkit.itest.oldtests;
+package org.vaadin.touchkit.v7.itest.oldtests;
 
 import com.vaadin.v7.data.Item;
 import com.vaadin.v7.data.util.HierarchicalContainer;

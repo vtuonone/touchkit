@@ -1,4 +1,4 @@
-package org.vaadin.touchkit.itest.oldtests;
+package org.vaadin.touchkit.v7.itest.oldtests;
 
 import org.junit.Ignore;
 import org.vaadin.touchkit.ui.NavigationButton;

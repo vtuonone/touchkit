@@ -1,8 +1,8 @@
-package org.vaadin.touchkit.itest.oldtests;
+package org.vaadin.touchkit.v7.itest.oldtests;
 
-import org.vaadin.touchkit.AbstractTouchKitIntegrationTest;
 import org.vaadin.touchkit.ui.NavigationManager;
 import org.vaadin.touchkit.ui.NavigationView;
+import org.vaadin.touchkit.v7.AbstractTouchKitIntegrationTest;
 
 import com.vaadin.event.Action;
 import com.vaadin.event.Action.Handler;
@@ -29,11 +29,13 @@ public class ContextMenu extends AbstractTouchKitIntegrationTest {
             private Action[] actions = new Action[] { new Action("Copy"),
                     new Action("Paste") };
 
-            public void handleAction(Action action, Object sender, Object target) {
+            @Override
+			public void handleAction(Action action, Object sender, Object target) {
             	getUI().showNotification("Just test");
             }
 
-            public Action[] getActions(Object target, Object sender) {
+            @Override
+			public Action[] getActions(Object target, Object sender) {
                 return actions;
             }
         });

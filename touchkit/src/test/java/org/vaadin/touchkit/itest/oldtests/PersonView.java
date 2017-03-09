@@ -6,7 +6,7 @@ import org.vaadin.touchkit.ui.VerticalComponentGroup;
 
 import com.vaadin.server.ExternalResource;
 import com.vaadin.ui.CssLayout;
-import com.vaadin.v7.ui.Label;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 
 public class PersonView extends AbstractTouchKitIntegrationTest {

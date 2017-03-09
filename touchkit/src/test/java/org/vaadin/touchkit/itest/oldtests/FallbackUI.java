@@ -1,7 +1,7 @@
 package org.vaadin.touchkit.itest.oldtests;
 
 import com.vaadin.server.VaadinRequest;
-import com.vaadin.v7.ui.Label;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.UI;
 
 public class FallbackUI extends UI {

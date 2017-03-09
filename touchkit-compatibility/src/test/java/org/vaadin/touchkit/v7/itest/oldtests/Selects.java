@@ -1,8 +1,8 @@
-package org.vaadin.touchkit.itest.oldtests;
+package org.vaadin.touchkit.v7.itest.oldtests;
 
-import org.vaadin.touchkit.AbstractTouchKitIntegrationTest;
 import org.vaadin.touchkit.ui.NavigationView;
 import org.vaadin.touchkit.ui.VerticalComponentGroup;
+import org.vaadin.touchkit.v7.AbstractTouchKitIntegrationTest;
 
 import com.vaadin.ui.CssLayout;
 import com.vaadin.v7.ui.OptionGroup;

@@ -1,14 +1,14 @@
-package org.vaadin.touchkit.itest.oldtests;
+package org.vaadin.touchkit.v7.itest.oldtests;
 
 import java.io.Serializable;
 
-import org.vaadin.touchkit.AbstractTouchKitIntegrationTest;
 import org.vaadin.touchkit.ui.NavigationView;
 import org.vaadin.touchkit.ui.VerticalComponentGroup;
+import org.vaadin.touchkit.v7.AbstractTouchKitIntegrationTest;
 
+import com.vaadin.ui.Component;
 import com.vaadin.v7.data.Item;
 import com.vaadin.v7.data.util.BeanItem;
-import com.vaadin.ui.Component;
 import com.vaadin.v7.ui.DefaultFieldFactory;
 import com.vaadin.v7.ui.Field;
 import com.vaadin.v7.ui.Form;
