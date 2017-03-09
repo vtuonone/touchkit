@@ -4,11 +4,11 @@ import org.vaadin.touchkit.AbstractTouchKitIntegrationTest;
 import org.vaadin.touchkit.ui.NavigationButton;
 import org.vaadin.touchkit.ui.VerticalComponentGroup;
 
-import com.vaadin.server.FontAwesome;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Notification;
-import com.vaadin.v7.ui.TextField;
+import com.vaadin.ui.TextField;
 
 public class IconButtonsTest extends AbstractTouchKitIntegrationTest implements
         ClickListener {
@@ -23,7 +23,7 @@ public class IconButtonsTest extends AbstractTouchKitIntegrationTest implements
         TextField textField = getTextFieldWithIcon();
         componentGroup.addComponent(textField);
 
-        for (FontAwesome i : FontAwesome.values()) {
+		for (VaadinIcons i : VaadinIcons.values()) {
             NavigationButton button = new NavigationButton(i.name());
             button.setIcon(i);
             componentGroup.addComponent(button);
@@ -37,7 +37,7 @@ public class IconButtonsTest extends AbstractTouchKitIntegrationTest implements
 
     private TextField getTextFieldWithIcon() {
         TextField textField = new TextField();
-        textField.setIcon(FontAwesome.USER);
+		textField.setIcon(VaadinIcons.USER);
         textField.setCaption("User");
         return textField;
     }

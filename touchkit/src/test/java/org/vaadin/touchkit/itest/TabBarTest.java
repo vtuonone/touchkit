@@ -5,10 +5,9 @@ import org.vaadin.touchkit.itest.oldtests.TestUtils;
 import org.vaadin.touchkit.ui.TabBarView;
 
 import com.vaadin.server.ThemeResource;
-import com.vaadin.v7.shared.ui.label.ContentMode;
+import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.v7.ui.Label;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.TabSheet.Tab;
 
 public class TabBarTest extends AbstractTouchKitIntegrationTest {
@@ -23,22 +22,12 @@ public class TabBarTest extends AbstractTouchKitIntegrationTest {
         Button removeTab = new Button("Remove selected tab");
         Button setSelected = new Button("Set selected");
 
-        removeTab.addClickListener(new Button.ClickListener() {
+        removeTab.addClickListener(event -> {
+		    Tab tab = bar.getSelelectedTab();
+		    bar.removeTab(tab);
+		});
 
-            @Override
-            public void buttonClick(ClickEvent event) {
-                Tab tab = bar.getSelelectedTab();
-                bar.removeTab(tab);
-            }
-        });
-
-        setSelected.addClickListener(new Button.ClickListener() {
-
-            @Override
-            public void buttonClick(ClickEvent event) {
-                bar.setSelectedTab(lastTab);
-            }
-        });
+        setSelected.addClickListener(event -> bar.setSelectedTab(lastTab));
 
         for (int loop = 0; loop < 5; loop++) {
             String content = String.format("Tab%d", loop);

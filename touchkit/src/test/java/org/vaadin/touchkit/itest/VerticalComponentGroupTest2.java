@@ -4,7 +4,7 @@ import org.vaadin.touchkit.AbstractTouchKitIntegrationTest;
 import org.vaadin.touchkit.ui.VerticalComponentGroup;
 
 import com.vaadin.ui.FormLayout;
-import com.vaadin.v7.ui.TextField;
+import com.vaadin.ui.TextField;
 
 public class VerticalComponentGroupTest2 extends AbstractTouchKitIntegrationTest {
 
