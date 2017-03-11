@@ -7,8 +7,6 @@ import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.InputElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.logical.shared.CloseEvent;
-import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.event.logical.shared.HasValueChangeHandlers;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
@@ -19,10 +17,8 @@ import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.EventListener;
 import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.vaadin.client.BrowserInfo;
-import com.vaadin.client.VConsole;
 import com.vaadin.shared.VBrowserDetails;
 
 /**
@@ -31,7 +27,6 @@ import com.vaadin.shared.VBrowserDetails;
  */
 public class DatePicker extends SimplePanel implements
         HasValueChangeHandlers<Date>, ClickHandler, HasEnabled {
-
     private static final String CLASSNAME = "v-touchkit-datepicker";
     private final static String DAY_FORMAT = "yyyy-MM-dd";
     private final static String MONTH_FORMAT = "yyyy-MM";
@@ -143,24 +138,20 @@ public class DatePicker extends SimplePanel implements
     /**
      * Input element listener for the HTML5 date input element
      */
-    private final EventListener elementListener = new EventListener() {
+    private final EventListener elementListener = event -> {
+	    String newDateString = input.getValue();
+	    if (newDateString == null || newDateString.isEmpty()) {
+	        // fire event if date value has changed
+	        setDate(null, true, date != null);
+	    } else {
+	        // non-empty value, set if changed
+	        Date newDate = toStandardDate(newDateString);
 
-        @Override
-        public void onBrowserEvent(com.google.gwt.user.client.Event event) {
-            String newDateString = input.getValue();
-            if (newDateString == null || newDateString.isEmpty()) {
-                // fire event if date value has changed
-                setDate(null, true, date != null);
-            } else {
-                // non-empty value, set if changed
-                Date newDate = toStandardDate(newDateString);
-
-                if (!newDate.equals(date)) {
-                    setDate((newDate), false, true);
-                }
-            }
-        }
-    };
+	        if (!newDate.equals(date)) {
+	            setDate((newDate), false, true);
+	        }
+	    }
+	};
 
     private Date toStandardDate(String newDateString) {
         return (newDateString == null || newDateString.isEmpty()) ? null
@@ -184,32 +175,6 @@ public class DatePicker extends SimplePanel implements
         }
 
         return getDateParser().dateToString(date);
-    }
-
-    /**
-     * Convert string value from input field to Date
-     *
-     * @param string
-     *            String value of input field
-     * @return Date value or null if failure
-     */
-    private Date stringToDate(String string) {
-        Date date = null;
-        try {
-            date = getDateParser().stringToDate(string);
-
-            // break;
-
-        } catch (Exception e) {
-            // Doesn't matter
-        }
-        // }
-
-        if (date == null) {
-            VConsole.error("Failed to parse: " + string);
-        }
-
-        return date;
     }
 
     /**
@@ -386,23 +351,12 @@ public class DatePicker extends SimplePanel implements
             overlay.setDate(date);
         }
 
-        overlay.addValueChangeHandler(new ValueChangeHandler<Date>() {
+        overlay.addValueChangeHandler(event -> setDate(event.getValue(), true, true));
 
-            @Override
-            public void onValueChange(ValueChangeEvent<Date> event) {
-                setDate(event.getValue(), true, true);
-            }
-        });
-
-        overlay.addCloseHandler(new CloseHandler<PopupPanel>() {
-
-            @Override
-            public void onClose(CloseEvent<PopupPanel> event) {
-                overlayClosed = new Date().getTime();
-                overlay = null;
-            }
-
-        });
+        overlay.addCloseHandler(event -> {
+		    overlayClosed = new Date().getTime();
+		    overlay = null;
+		});
     }
 
     protected void closeCalendar() {
