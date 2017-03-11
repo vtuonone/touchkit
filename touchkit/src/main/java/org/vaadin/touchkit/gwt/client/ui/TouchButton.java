@@ -1,6 +1,7 @@
 package org.vaadin.touchkit.gwt.client.ui;
 
 import java.util.Date;
+import java.util.logging.Logger;
 
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.NativeEvent;
@@ -13,12 +14,11 @@ import com.google.gwt.event.dom.client.TouchMoveHandler;
 import com.google.gwt.event.dom.client.TouchStartEvent;
 import com.google.gwt.event.dom.client.TouchStartHandler;
 import com.google.gwt.user.client.Event;
-import com.vaadin.client.VConsole;
 import com.vaadin.client.ui.VButton;
 
 public class TouchButton extends VButton implements TouchStartHandler,
         TouchCancelHandler, TouchEndHandler, TouchMoveHandler {
-
+	private static final Logger LOGGER = Logger.getLogger(TouchButton.class.getName());
     static final long IGNORE_SIMULATED_CLICKS_THRESHOLD = 1500;
     private boolean touchStarted;
     private Date fastClickAt;
@@ -31,11 +31,13 @@ public class TouchButton extends VButton implements TouchStartHandler,
         }
     }
 
-    public void onTouchMove(TouchMoveEvent event) {
+    @Override
+	public void onTouchMove(TouchMoveEvent event) {
         touchStarted = false;
     }
 
-    public void onTouchEnd(TouchEndEvent event) {
+    @Override
+	public void onTouchEnd(TouchEndEvent event) {
         if (touchStarted) {
             event.preventDefault();
             event.stopPropagation();
@@ -50,7 +52,8 @@ public class TouchButton extends VButton implements TouchStartHandler,
         }
     }
 
-    public void onTouchCancel(TouchCancelEvent event) {
+    @Override
+	public void onTouchCancel(TouchCancelEvent event) {
         touchStarted = false;
     }
 
@@ -58,7 +61,7 @@ public class TouchButton extends VButton implements TouchStartHandler,
     public void onBrowserEvent(Event event) {
         if (fastClickAt != null && event.getTypeInt() == Event.ONCLICK
                 && (new Date().getTime() - fastClickAt.getTime()) < IGNORE_SIMULATED_CLICKS_THRESHOLD) {
-            VConsole.log("Ignored simulated event fired by old ios or android "
+			LOGGER.info("Ignored simulated event fired by old ios or android "
                     + (new Date().getTime() - fastClickAt.getTime()));
             fastClickAt = null;
             return;
@@ -66,7 +69,8 @@ public class TouchButton extends VButton implements TouchStartHandler,
         super.onBrowserEvent(event);
     }
 
-    public void onTouchStart(TouchStartEvent event) {
+    @Override
+	public void onTouchStart(TouchStartEvent event) {
         setFocus(true);
         touchStarted = true;
         fastClickAt = null;
