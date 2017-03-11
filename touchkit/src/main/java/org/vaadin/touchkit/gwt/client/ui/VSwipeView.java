@@ -1,7 +1,9 @@
 package org.vaadin.touchkit.gwt.client.ui;
 
 import java.util.Date;
+import java.util.logging.Logger;
 
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Overflow;
@@ -9,26 +11,18 @@ import com.google.gwt.dom.client.Style.Position;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.HumanInputEvent;
 import com.google.gwt.event.dom.client.MouseDownEvent;
-import com.google.gwt.event.dom.client.MouseDownHandler;
 import com.google.gwt.event.dom.client.MouseMoveEvent;
-import com.google.gwt.event.dom.client.MouseMoveHandler;
 import com.google.gwt.event.dom.client.MouseUpEvent;
-import com.google.gwt.event.dom.client.MouseUpHandler;
 import com.google.gwt.event.dom.client.TouchEndEvent;
-import com.google.gwt.event.dom.client.TouchEndHandler;
 import com.google.gwt.event.dom.client.TouchMoveEvent;
-import com.google.gwt.event.dom.client.TouchMoveHandler;
 import com.google.gwt.event.dom.client.TouchStartEvent;
-import com.google.gwt.event.dom.client.TouchStartHandler;
 import com.google.gwt.user.client.DOM;
-import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.vaadin.client.BrowserInfo;
-import com.vaadin.client.Util;
-import com.vaadin.client.VConsole;
+import com.vaadin.client.WidgetUtil;
 import com.vaadin.client.ui.TouchScrollDelegate;
 
 public class VSwipeView extends SimplePanel {
@@ -39,6 +33,7 @@ public class VSwipeView extends SimplePanel {
         void onSwipeForward();
     }
 
+	private static final Logger LOGGER = Logger.getLogger(VSwipeView.class.getName());
     private SwipeListener swipeListener;
 
     private static final double SPEED_THRESHOLD = 0.35;
@@ -79,49 +74,24 @@ public class VSwipeView extends SimplePanel {
     }
 
     protected void initHandlers() {
-        addHandler(new TouchStartHandler() {
-            public void onTouchStart(TouchStartEvent event) {
-                dragStartEvent = event;
-                dragStart(event);
-            }
-        }, TouchStartEvent.getType());
+        addHandler(event -> {
+		    dragStartEvent = event;
+		    dragStart(event);
+		}, TouchStartEvent.getType());
 
-        addHandler(new MouseDownHandler() {
+        addHandler(event -> {
+		    if (event.getNativeButton() == NativeEvent.BUTTON_LEFT) {
+		        dragStart(event);
+		    }
+		}, MouseDownEvent.getType());
 
-            public void onMouseDown(MouseDownEvent event) {
-                if (event.getNativeButton() == NativeEvent.BUTTON_LEFT) {
-                    dragStart(event);
-                }
-            }
-        }, MouseDownEvent.getType());
+        addHandler(event -> dragMove(event), MouseMoveEvent.getType());
 
-        addHandler(new MouseMoveHandler() {
+        addHandler(event -> dragMove(event), TouchMoveEvent.getType());
 
-            public void onMouseMove(MouseMoveEvent event) {
-                dragMove(event);
-            }
-        }, MouseMoveEvent.getType());
+        addHandler(event -> dragEnd(event), MouseUpEvent.getType());
 
-        addHandler(new TouchMoveHandler() {
-
-            public void onTouchMove(TouchMoveEvent event) {
-                dragMove(event);
-            }
-        }, TouchMoveEvent.getType());
-
-        addHandler(new MouseUpHandler() {
-
-            public void onMouseUp(MouseUpEvent event) {
-                dragEnd(event);
-            }
-        }, MouseUpEvent.getType());
-
-        addHandler(new TouchEndHandler() {
-
-            public void onTouchEnd(TouchEndEvent event) {
-                dragEnd(event);
-            }
-        }, TouchEndEvent.getType());
+        addHandler(event -> dragEnd(event), TouchEndEvent.getType());
 
     }
 
@@ -135,12 +105,12 @@ public class VSwipeView extends SimplePanel {
 
     protected void dragStart(HumanInputEvent event) {
         NativeEvent ne = event.getNativeEvent();
-        VConsole.log("Drag start" + ne.getType());
+		LOGGER.info("Drag start" + ne.getType());
         if (!dragging && np != null && isEnabled()) {
             dragging = true;
             touchDrag = Event.as(ne).getTypeInt() == Event.ONTOUCHSTART;
-            dragstartX = Util.getTouchOrMouseClientX(ne);
-            dragstartY = Util.getTouchOrMouseClientY(ne);
+			dragstartX = WidgetUtil.getTouchOrMouseClientX(ne);
+			dragstartY = WidgetUtil.getTouchOrMouseClientY(ne);
             if (!BrowserInfo.get().isTouchDevice()) {
                 // avoid drag start on images
                 // FIXME shouln't be this way, but disables dragstart on images
@@ -179,8 +149,8 @@ public class VSwipeView extends SimplePanel {
             if (touchDrag && Event.as(ne).getTypeInt() != Event.ONTOUCHMOVE) {
                 return;
             }
-            int x = Util.getTouchOrMouseClientX(ne);
-            int y = Util.getTouchOrMouseClientY(ne);
+			int x = WidgetUtil.getTouchOrMouseClientX(ne);
+			int y = WidgetUtil.getTouchOrMouseClientY(ne);
             long time = new Date().getTime();
             // screens per second
             double screenwidths = (x - lastX) / (double) getOffsetWidth();
@@ -190,7 +160,7 @@ public class VSwipeView extends SimplePanel {
             lastTs = time;
             int deltaX = x - dragstartX;
             if (swiping) {
-                VConsole.log("Swipe move " + deltaX);
+				LOGGER.info("Swipe move " + deltaX);
                 np.setHorizontalOffset(deltaX, false);
                 ne.preventDefault(); // prevent page scroll
             } else if (dragging) {
@@ -211,7 +181,7 @@ public class VSwipeView extends SimplePanel {
                             dragStartEvent.setNativeEvent(event
                                     .getNativeEvent());
                             touchScrollDelegate.onTouchStart(dragStartEvent);
-                            VConsole.log("Lazy started");
+							LOGGER.info("Lazy started");
                             dragging = false;
                         }
                     }
@@ -227,14 +197,14 @@ public class VSwipeView extends SimplePanel {
     protected void dragEnd(HumanInputEvent event) {
         if (dragging) {
             Event.releaseCapture(getElement());
-            VConsole.log("Drag end");
+			LOGGER.info("Drag end");
             dragging = false;
             if (swiping) {
                 if (np != null) {
                     NativeEvent ne = event.getNativeEvent();
-                    int x = Util.getTouchOrMouseClientX(ne);
+					int x = WidgetUtil.getTouchOrMouseClientX(ne);
                     int deltaX = x - dragstartX;
-                    VConsole.log("Speed" + lastSpeed);
+					LOGGER.info("Speed" + lastSpeed);
                     if (np.getPreviousView() != null
                             && (deltaX > getOffsetWidth() / 2 || lastSpeed > SPEED_THRESHOLD)) {
                         // navigate backward
