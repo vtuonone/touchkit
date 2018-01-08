@@ -6,6 +6,11 @@
     <version>5.0.0.beta2</version>
     <packaging>jar</packaging>
     <name>TouchKit-Compatibility</name>
+    <organization>
+        <name>Team Parttio</name>
+        <url>http://github.com/parttio/</url>
+    </organization>
+
     <profiles>
         <profile>
             <id>release</id>
