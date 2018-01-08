@@ -4,7 +4,7 @@
     <groupId>org.vaadin.touchkit</groupId>
     <artifactId>touchkit-parent</artifactId>
     <packaging>pom</packaging>
-    <version>5.0.0-SNAPSHOT</version>
+    <version>5.0.0.beta2</version>
     <name>TouchKit Parent</name>
 	
 	<modules>

@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.vaadin.touchkit</groupId>
     <artifactId>touchkit</artifactId>
-    <version>5.0.0-SNAPSHOT</version>
+    <version>5.0.0.beta2</version>
     <packaging>jar</packaging>
     <name>TouchKit</name>
     
