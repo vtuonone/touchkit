@@ -2,7 +2,9 @@
 
 The easiest way of building a cross-platform mobile user interface for a Java application. Add support for smartphones and tablets in days instead of months, with the tools you are already using.
 
-The master branch contains a Framework 8 compatible version which is not maintained by Vaadin Ltd.
+The master branch contains a Framework 8 compatible version which is not maintained by Vaadin Ltd, but just by community members.
+
+To see how to set up a project using TouchKit and Vaadin 8, refer to this [TouchKit example project](https://github.com/parttio/touchkit-example).
 
 ## Releases
 
