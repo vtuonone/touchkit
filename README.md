@@ -6,9 +6,19 @@ The master branch contains a Framework 8 compatible version which is not maintai
 
 To see how to set up a project using TouchKit and Vaadin 8, refer to this [TouchKit example project](https://github.com/parttio/touchkit-example).
 
+## Features
+
+ * Components designed for mobile usage
+ * mobile optimized theme, built with GWT
+ * Tools to compress widgetset better
+ * home screen web app support (both for iOS and in "Google PWA" style manifest.json, which is now a W3 standard)
+ * strong caching and offline mode support (must be developed with GWT), using cache manifest and service worker on Android
+
 ## Releases
 
 Official releases for versions 3.x and 4.x are available at http://vaadin.com/addon/vaadin-touchkit
+
+5.0 (V8 compatible) and forward available at https://vaadin.com/directory/component/touchkit
 
 ## Building TouchKit
 
