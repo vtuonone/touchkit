@@ -6,7 +6,6 @@ import java.util.Collection;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
-import com.vaadin.annotations.Widgetset;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.AbstractComponent;
@@ -24,6 +23,8 @@ public class TouchkitTestUI extends UI {
 
     @Override
     protected void init(VaadinRequest request) {
+        
+        
 
         String requestPathInfo = request.getPathInfo();
         if (requestPathInfo.length() > 3) {
@@ -35,6 +36,9 @@ public class TouchkitTestUI extends UI {
                 } else {
                     className = getClass().getPackage().getName() + ".itest."
                             + requestPathInfo.substring(1);
+                }
+                if(className.contains("/")) {
+                    className = className.substring(0, className.indexOf("/"));
                 }
                 Class<?> forName = Class.forName(className);
                 if (forName != null) {
