@@ -338,6 +338,7 @@ public class TouchKitSettings implements BootstrapListener,
                     return true;
                 } else if (pathInfo.endsWith("service-worker.js")) {
                     response.setContentType("text/javascript");
+                    response.setCacheTime(-1);
                     PrintWriter writer = response.getWriter();
                     writer.write("self.addEventListener('install', e => {\n"
                             + "  e.waitUntil(\n"
