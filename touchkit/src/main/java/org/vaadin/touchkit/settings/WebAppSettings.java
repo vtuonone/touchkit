@@ -30,27 +30,27 @@ public class WebAppSettings implements BootstrapListener {
     private String background_color = "white";
     private String theme_color = "gray";
 
-    public void setTheme_color(String theme_color) {
+    public void setThemeColor(String theme_color) {
         this.theme_color = theme_color;
     }
 
-    public String getTheme_color() {
+    public String getThemeColor() {
         return theme_color;
     }
 
-    public String getBackground_color() {
+    public String getBackgroundColor() {
         return background_color;
     }
 
-    public void setBackground_color(String background_color) {
+    public void setBackgroundColor(String background_color) {
         this.background_color = background_color;
     }
 
-    public String getStart_url() {
+    public String getStartUrl() {
         return start_url;
     }
 
-    public void setStart_url(String start_url) {
+    public void setStartUrl(String start_url) {
         this.start_url = start_url;
     }
 

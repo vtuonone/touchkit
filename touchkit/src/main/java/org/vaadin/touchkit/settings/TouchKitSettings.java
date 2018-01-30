@@ -226,7 +226,7 @@ public class TouchKitSettings implements BootstrapListener,
             // This meta tag is for some weird reason needed for 100% google PWA ;-)
             element = document.createElement("meta");
             element.attr("name", "theme-color");
-            element.attr("content", getWebAppSettings().getTheme_color());
+            element.attr("content", getWebAppSettings().getThemeColor());
             document.getElementsByTag("head").get(0).appendChild(element);
 
             if (stronglyCachedResources == null) {
@@ -316,9 +316,9 @@ public class TouchKitSettings implements BootstrapListener,
                             + "  \"short_name\": \"" + getWebAppSettings().getApplicationShortName() + "\",\n"
                             + "  \"name\": \"" + getWebAppSettings().getApplicationName() + "\",\n"
                             + "  \"display\": \"" + getWebAppSettings().getDisplay() + "\",\n"
-                            + "  \"start_url\": \"" + contextPath + getWebAppSettings().getStart_url() + "\",\n"
-                            + "  \"background_color\": \"" + getWebAppSettings().getBackground_color() + "\",\n"
-                            + "  \"theme_color\": \"" + getWebAppSettings().getTheme_color() + "\",\n"
+                            + "  \"start_url\": \"" + contextPath + getWebAppSettings().getStartUrl() + "\",\n"
+                            + "  \"background_color\": \"" + getWebAppSettings().getBackgroundColor() + "\",\n"
+                            + "  \"theme_color\": \"" + getWebAppSettings().getThemeColor() + "\",\n"
                             + "  \"icons\": [\n");
 
                     final ApplicationIcon[] icons = getApplicationIcons().getApplicationIcons();
