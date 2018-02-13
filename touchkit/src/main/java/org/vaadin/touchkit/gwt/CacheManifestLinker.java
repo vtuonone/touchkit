@@ -250,7 +250,9 @@ public class CacheManifestLinker extends AbstractLinker {
         cm.append("\n\nCACHE:\n");
 
         for (String fn : artifacts) {
-            cm.append(fn);
+            // replace backslashes with slashes on Win
+            final String resource = fn.replace("\\", "/");
+            cm.append(resource); 
             cm.append("\n");
         }
         cm.append("\nNETWORK:\n");
