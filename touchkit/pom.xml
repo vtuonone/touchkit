@@ -49,6 +49,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.0.0</version>
                         <!-- Prevent DocLint from cancelling the build -->
                         <configuration>
                             <failOnError>false</failOnError>
@@ -78,7 +79,7 @@
             <url>http://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
     </licenses>
-    
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <vaadin.version.maven>8.4.1</vaadin.version.maven>
@@ -132,7 +133,7 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
                 <version>3.0.2</version>
-            </plugin>            
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -194,10 +195,10 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin> 
+            </plugin>
         </plugins>
     </build>
-	
+
     <dependencies>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
