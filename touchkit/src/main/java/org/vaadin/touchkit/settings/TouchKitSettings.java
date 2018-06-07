@@ -233,7 +233,7 @@ public class TouchKitSettings implements BootstrapListener,
                 // TODO make this somehow more stable and cleaner
                 String text = document.body().toString().replaceAll("\n", "");
 
-                Pattern p = Pattern.compile(".*widgetset\": \"([^\"]+)\"", Pattern.DOTALL);
+                Pattern p = Pattern.compile(".*widgetset\": *\"([^\"]+)\"", Pattern.DOTALL);
                 Matcher matcher = p.matcher(text);
                 boolean find = matcher.find();
                 String wsname = matcher.group(1);
