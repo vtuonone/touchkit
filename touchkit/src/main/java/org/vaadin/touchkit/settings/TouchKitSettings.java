@@ -309,71 +309,72 @@ public class TouchKitSettings implements BootstrapListener,
             public boolean handleRequest(VaadinSession session, VaadinRequest request, VaadinResponse response) throws IOException {
                 final String pathInfo = request.getPathInfo();
                 String contextPath = request.getContextPath();
-                if (pathInfo.endsWith("manifest.json")) {
-                    // TODO write manifest.json using Jackson or similar
-                    PrintWriter writer = response.getWriter();
-					writer.append("{\n"
-                            + "  \"short_name\": \"" + getWebAppSettings().getApplicationShortName() + "\",\n"
-                            + "  \"name\": \"" + getWebAppSettings().getApplicationName() + "\",\n"
-                            + "  \"display\": \"" + getWebAppSettings().getDisplay() + "\",\n"
-                            + "  \"start_url\": \"" + contextPath + getWebAppSettings().getStartUrl() + "\",\n"
-                            + "  \"background_color\": \"" + getWebAppSettings().getBackgroundColor() + "\",\n"
-                            + "  \"theme_color\": \"" + getWebAppSettings().getThemeColor() + "\",\n"
-                            + "  \"icons\": [\n");
+                if(pathInfo != null){
+                    if (pathInfo.endsWith("manifest.json")) {
+                        // TODO write manifest.json using Jackson or similar
+                        PrintWriter writer = response.getWriter();
+                        writer.append("{\n"
+                                + "  \"short_name\": \"" + getWebAppSettings().getApplicationShortName() + "\",\n"
+                                + "  \"name\": \"" + getWebAppSettings().getApplicationName() + "\",\n"
+                                + "  \"display\": \"" + getWebAppSettings().getDisplay() + "\",\n"
+                                + "  \"start_url\": \"" + contextPath + getWebAppSettings().getStartUrl() + "\",\n"
+                                + "  \"background_color\": \"" + getWebAppSettings().getBackgroundColor() + "\",\n"
+                                + "  \"theme_color\": \"" + getWebAppSettings().getThemeColor() + "\",\n"
+                                + "  \"icons\": [\n");
 
-                    final ApplicationIcon[] icons = getApplicationIcons().getApplicationIcons();
-                    for (int i = 0; i < icons.length; i++) {
-                        ApplicationIcon icon = icons[i];
-                        if (i > 0) {
-                            writer.println(",");
+                        final ApplicationIcon[] icons = getApplicationIcons().getApplicationIcons();
+                        for (int i = 0; i < icons.length; i++) {
+                            ApplicationIcon icon = icons[i];
+                            if (i > 0) {
+                                writer.println(",");
+                            }
+                            writer.print("    {\n");
+                            writer.print("\"src\": \"" + icon.getHref() + "\",");
+                            writer.print("\"sizes\": \"" + icon.getSizes() + "\"");
+                            writer.print("    }\n");
                         }
-                        writer.print("    {\n");
-                        writer.print("\"src\": \"" + icon.getHref() + "\",");
-                        writer.print("\"sizes\": \"" + icon.getSizes() + "\"");
-                        writer.print("    }\n");
-                    }
-                    writer.print("    ]\n");
-                    writer.append("}");
+                        writer.print("    ]\n");
+                        writer.append("}");
 
-                    return true;
-                } else if (pathInfo.endsWith("service-worker.js")) {
-                    response.setContentType("text/javascript");
-                    response.setCacheTime(-1);
-                    PrintWriter writer = response.getWriter();
-                    writer.write("self.addEventListener('install', e => {\n"
-                            + "  e.waitUntil(\n"
-                            + "    caches.open(\"tkcache\").then(c => {\n"
-                            + "      return c.addAll([\n");
+                        return true;
+                    } else if (pathInfo.endsWith("service-worker.js")) {
+                        response.setContentType("text/javascript");
+                        response.setCacheTime(-1);
+                        PrintWriter writer = response.getWriter();
+                        writer.write("self.addEventListener('install', e => {\n"
+                                + "  e.waitUntil(\n"
+                                + "    caches.open(\"tkcache\").then(c => {\n"
+                                + "      return c.addAll([\n");
 
-                    // TODO consider using https://github.com/GoogleChromeLabs/sw-precache
-                    if (stronglyCachedResources != null) {
-                        for (String stronglyCachedResource : stronglyCachedResources) {
-                            writer.write("'");
-                            writer.write(stronglyCachedResource);
-                            writer.write("',\n");
+                        // TODO consider using https://github.com/GoogleChromeLabs/sw-precache
+                        if (stronglyCachedResources != null) {
+                            for (String stronglyCachedResource : stronglyCachedResources) {
+                                writer.write("'");
+                                writer.write(stronglyCachedResource);
+                                writer.write("',\n");
+                            }
+                        } else {
+                            Logger.getLogger(TouchKitSettings.class.getName()).log(Level.SEVERE, "strongly cached resources could not be found");
                         }
-                    } else {
-                        Logger.getLogger(TouchKitSettings.class.getName()).log(Level.SEVERE, "strongly cached resources could not be found");
-                    }
 
-                    writer.write(""
-                            + "      ]).then(() => self.skipWaiting());\n"
-                            + "    })\n"
-                            + "  );\n"
-                            + "});\n"
-                            + "\n"
-                            + "self.addEventListener('fetch', e => {\n"
-                            + "  e.respondWith(\n"
-                            + "    caches.open(\"tkcache\").then(c => {\n"
-                            + "      return c.match(e.request).then(res => {\n"
-                            + "        return res || fetch(e.request)\n"
-                            + "      });\n"
-                            + "    })\n"
-                            + "  );\n"
-                            + "});");
-                    return true;
+                        writer.write(""
+                                + "      ]).then(() => self.skipWaiting());\n"
+                                + "    })\n"
+                                + "  );\n"
+                                + "});\n"
+                                + "\n"
+                                + "self.addEventListener('fetch', e => {\n"
+                                + "  e.respondWith(\n"
+                                + "    caches.open(\"tkcache\").then(c => {\n"
+                                + "      return c.match(e.request).then(res => {\n"
+                                + "        return res || fetch(e.request)\n"
+                                + "      });\n"
+                                + "    })\n"
+                                + "  );\n"
+                                + "});");
+                        return true;
+                    }
                 }
-
                 return false;
             }
 
