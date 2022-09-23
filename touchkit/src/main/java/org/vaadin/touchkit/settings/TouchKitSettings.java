@@ -1,17 +1,9 @@
 package org.vaadin.touchkit.settings;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
-import org.vaadin.touchkit.annotations.CacheManifestEnabled;
-import org.vaadin.touchkit.annotations.OfflineModeEnabled;
-import org.vaadin.touchkit.server.TouchKitServlet;
-
 import com.vaadin.server.BootstrapFragmentResponse;
 import com.vaadin.server.BootstrapListener;
 import com.vaadin.server.BootstrapPageResponse;
 import com.vaadin.server.CustomizedSystemMessages;
-import com.vaadin.server.Page;
 import com.vaadin.server.RequestHandler;
 import com.vaadin.server.ServiceException;
 import com.vaadin.server.SessionInitEvent;
@@ -24,22 +16,25 @@ import com.vaadin.server.VaadinResponse;
 import com.vaadin.server.VaadinService;
 import com.vaadin.server.VaadinServletService;
 import com.vaadin.server.VaadinSession;
-import com.vaadin.server.WebBrowser;
+import org.apache.commons.io.IOUtils;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.vaadin.touchkit.annotations.OfflineModeEnabled;
+import org.vaadin.touchkit.server.TouchKitServlet;
+import org.vaadin.touchkit.service.ApplicationIcon;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.apache.commons.io.IOUtils;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.vaadin.touchkit.service.ApplicationIcon;
 
 /**
  * TouchKitSettings is a collection of tools that help modify various touch
@@ -187,12 +182,10 @@ public class TouchKitSettings implements BootstrapListener,
         }
         if (getApplicationCacheSettings() != null) {
             OfflineModeEnabled offline = null;
-            CacheManifestEnabled manifest = null;
 
             Class<?> clazz = response.getUiClass();
             if (clazz != null) {
                 offline = clazz.getAnnotation(OfflineModeEnabled.class);
-                manifest = clazz.getAnnotation(CacheManifestEnabled.class);
             }
             if (response.getSession().getService() instanceof VaadinServletService) {
                 clazz = ((VaadinServletService) response.getSession()
@@ -200,13 +193,8 @@ public class TouchKitSettings implements BootstrapListener,
                 if (offline == null) {
                     offline = clazz.getAnnotation(OfflineModeEnabled.class);
                 }
-                if (manifest == null) {
-                    manifest = clazz.getAnnotation(CacheManifestEnabled.class);
-                }
             }
 
-            getApplicationCacheSettings().setCacheManifestEnabled(
-                    manifest == null || manifest.value());
             getApplicationCacheSettings().setOfflineModeEnabled(
                     offline == null || offline.value());
             getApplicationCacheSettings().modifyBootstrapPage(response);
@@ -235,8 +223,14 @@ public class TouchKitSettings implements BootstrapListener,
 
                 Pattern p = Pattern.compile(".*widgetset\": *\"([^\"]+)\"", Pattern.DOTALL);
                 Matcher matcher = p.matcher(text);
+
                 boolean find = matcher.find();
-                String wsname = matcher.group(1);
+                String wsname = "";
+                if (find) {
+                    wsname = matcher.group(1);
+                } else {
+                    return;
+                }
 
                 InputStream resourceAsStream = getClass().getResourceAsStream("/VAADIN/widgetsets/" + wsname + "/" + "safari.manifest");
 
@@ -458,7 +452,7 @@ public class TouchKitSettings implements BootstrapListener,
             VaadinRequest currentRequest = VaadinServletService.getCurrentRequest();
             String useragentheader = currentRequest.getHeader("User-Agent").toLowerCase();
             // Simply expect all chromes to support
-            if (useragentheader.contains("chrome")) {
+            if (useragentheader.contains("chrome") || useragentheader.contains("firefox") || useragentheader.contains("safari")) {
                 return true;
             }
         } catch (Exception e) {

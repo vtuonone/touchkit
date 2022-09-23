@@ -67,7 +67,6 @@ public class CacheManifestStatusIndicator implements EntryPoint {
      */
     public void init() {
         loadSettingsFromLocalStorage();
-        hookAllListeners(this);
         scheduleUpdateChecker();
         if (getStatus() == CHECKING || getStatus() == DOWNLOADING) {
             showProgress();
@@ -206,8 +205,6 @@ public class CacheManifestStatusIndicator implements EntryPoint {
      * has been detected. The default implementation asks the user if we should
      * update now unless forced.
      * 
-     * @param force
-     *            true to force reloading the site without asking the user.
      */
     private void requestUpdate() {
         logger.info("Application cache updated, confirmationRequired=" + confirmationRequired);
@@ -215,41 +212,6 @@ public class CacheManifestStatusIndicator implements EntryPoint {
             Window.Location.reload();
         }
     }
-
-    /**
-     * Hooks all listeners to the specified instance.
-     * 
-     * @param instance
-     *            the instance to hook the listeners to.
-     */
-    protected final native void hookAllListeners(
-            CacheManifestStatusIndicator instance)
-    /*-{
-        $wnd.applicationCache.addEventListener('cached',
-            function(event) {
-                instance.@org.vaadin.touchkit.gwt.client.offlinemode.CacheManifestStatusIndicator::onCacheEvent(Lcom/google/gwt/user/client/Event;)(event);
-            }, false);
-        $wnd.applicationCache.addEventListener('checking',
-            function(event) {
-                instance.@org.vaadin.touchkit.gwt.client.offlinemode.CacheManifestStatusIndicator::onCacheEvent(Lcom/google/gwt/user/client/Event;)(event);
-            }, false);
-        $wnd.applicationCache.addEventListener('downloading',
-            function(event) {
-                instance.@org.vaadin.touchkit.gwt.client.offlinemode.CacheManifestStatusIndicator::onCacheEvent(Lcom/google/gwt/user/client/Event;)(event);
-            }, false);
-        $wnd.applicationCache.addEventListener('noupdate',
-            function(event) {
-                instance.@org.vaadin.touchkit.gwt.client.offlinemode.CacheManifestStatusIndicator::onCacheEvent(Lcom/google/gwt/user/client/Event;)(event);
-            }, false);
-        $wnd.applicationCache.addEventListener('updateready',
-            function(event) {
-                instance.@org.vaadin.touchkit.gwt.client.offlinemode.CacheManifestStatusIndicator::onCacheEvent(Lcom/google/gwt/user/client/Event;)(event);
-            }, false);
-        $wnd.applicationCache.addEventListener('error',
-            function(event) {
-                instance.@org.vaadin.touchkit.gwt.client.offlinemode.CacheManifestStatusIndicator::onError(Lcom/google/gwt/user/client/Event;)(event);
-            }, false);
-    }-*/;
 
     /**
      * @return The status of the application cache. See the constants in this

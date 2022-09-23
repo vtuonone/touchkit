@@ -20,7 +20,6 @@ import com.vaadin.shared.VBrowserDetails;
 @SuppressWarnings("serial")
 public class ApplicationCacheSettings implements BootstrapListener {
 
-    private boolean cacheManifestEnabled = true;
     private boolean offlineModeEnabled = true;
 
     @Override
@@ -65,69 +64,6 @@ public class ApplicationCacheSettings implements BootstrapListener {
 
         scriptTag.appendChild(new DataNode(script));
 
-        if (isCacheManifestEnabled()) {
-            // Add cache manifest attribute to html tag
-            document.getElementsByTag("html").attr(
-                    "manifest",
-                    vaadinDir + "widgetsets/" + widgetset + "/"
-                            + generateManifestFileName(response));
-        }
-    }
-
-    /**
-     * Generates the manifest file name for the given page response
-     *
-     * @param response
-     *            Page response where the manifest will be added.
-     * @return The manifest file name, eg. "safari.manifest".
-     */
-    protected String generateManifestFileName(BootstrapPageResponse response) {
-        String userAgent = response.getRequest().getHeader("user-agent");
-        if (userAgent == null) {
-            // Should not happen in "normal" cases but the header is optional
-            return "safari.manifest";
-        }
-        VBrowserDetails browser = new VBrowserDetails(userAgent);
-
-        if (browser.isFirefox()) {
-            return "gecko1_8.manifest";
-        } else if (browser.isChrome()) {
-            return "safari.manifest";
-        } else if (browser.isIE()) {
-            if (browser.getBrowserMajorVersion() > 10) {
-                return "gecko1_8.manifest";
-            } else {
-                return "ie10.manifest";
-            }
-        } else if (browser.isAndroid()) {
-            int major = browser.getOperatingSystemMajorVersion();
-            int minor = browser.getOperatingSystemMinorVersion();
-            if (major < 4 || (major == 4 && minor < 4)) {
-                return "aosp.manifest";
-            } else {
-                return "safari.manifest";
-            }
-        } else {
-            return "safari.manifest";
-        }
-    }
-
-    /**
-     * @return true if the cache manifest (and thus application cache) is
-     *         enabled.
-     */
-    public boolean isCacheManifestEnabled() {
-        return cacheManifestEnabled && !TouchKitSettings.supportsGooglePWA();
-    }
-
-    /**
-     * Enable or disable the cache manifest (and thus application cache).
-     *
-     * @param cacheManifestEnabled
-     *            true to enable.
-     */
-    public void setCacheManifestEnabled(boolean cacheManifestEnabled) {
-        this.cacheManifestEnabled = cacheManifestEnabled;
     }
 
     /**
