@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.vaadin.touchkit</groupId>
     <artifactId>touchkit</artifactId>
-    <version>5.0.4</version>
+    <version>5.0.5-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>TouchKit</name>
     <organization>
@@ -70,7 +70,7 @@
         <connection>scm:git:ssh://git@github.com/parttio/touchkit.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/parttio/touchkit.git</developerConnection>
         <url>https://github.com/parttio/touchkit</url>
-        <tag>touchkit-5.0.4</tag>
+        <tag>HEAD</tag>
     </scm>
     <licenses>
         <license>
