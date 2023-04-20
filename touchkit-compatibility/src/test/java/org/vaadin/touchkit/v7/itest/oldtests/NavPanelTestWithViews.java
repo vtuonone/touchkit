@@ -268,7 +268,7 @@ public class NavPanelTestWithViews extends NavigationManager implements
         }
 
         private Component createActionButton1() {
-            Button button = new Button(null, this);
+            Button button = new Button((String)null, this);
             button.setIcon(new ThemeResource("../runo/icons/64/email.png"));
 
             button.setIcon(new ClassResource("mail.png"));
@@ -276,19 +276,19 @@ public class NavPanelTestWithViews extends NavigationManager implements
         }
 
         private Component createActionButton2() {
-            Button button = new Button(null, this);
+            Button button = new Button((String)null, this);
             button.setIcon(new ThemeResource("../runo/icons/64/email-reply.png"));
             return button;
         }
 
         private Component createActionButton3() {
-            Button button = new Button(null, this);
+            Button button = new Button((String)null, this);
             button.setIcon(new ThemeResource("../runo/icons/64/email-send.png"));
             return button;
         }
 
         private Component createActionButton4() {
-            Button button = new Button(null, this);
+            Button button = new Button((String)null, this);
             button.setIcon(new ThemeResource("../runo/icons/64/folder.png"));
             button.setCaption("Send");
             return button;

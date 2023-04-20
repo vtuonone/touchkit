@@ -138,7 +138,7 @@ public class FieldsTest extends AbstractTouchKitIntegrationTest implements
         button.setIcon(FontAwesome.HOME);
         toolbar.addComponent(button);
 
-        button = new Button(null, this);
+        button = new Button((String)null, this);
         button.setIcon(FontAwesome.FLOPPY_O);
         toolbar.addComponent(button);
         button = new Button();

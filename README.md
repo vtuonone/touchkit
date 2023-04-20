@@ -22,7 +22,7 @@ Official releases for versions 3.x and 4.x are available at http://vaadin.com/ad
 
 ## Building TouchKit
 
-    git clone https://github.com/parttio/touchkit.git
+    git clone https://github.com/vtuonone/touchkit.git
     cd touchkit
     mvn install
 
