@@ -80,8 +80,8 @@
         </license>
     </licenses>
     <properties>
-        <vaadin.version.maven>8.11.3</vaadin.version.maven>
-        <vaadin.plugin.version>8.11.3</vaadin.plugin.version>
+        <vaadin.version.maven>8.14.3</vaadin.version.maven>
+        <vaadin.plugin.version>8.14.3</vaadin.plugin.version>
         <snapshot.repository.url>http://oss.sonatype.org/content/repositories/vaadin-snapshots/</snapshot.repository.url>
         <jetty.version>9.2.14.v20151106</jetty.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -209,7 +209,7 @@
         <dependency>
             <groupId>org.vaadin.touchkit</groupId>
             <artifactId>touchkit</artifactId>
-            <version>5.0.5-8.11.3</version>
+            <version>5.0.4</version>
         </dependency>
         <!-- This ought to be transient dependency from Vaadin? -->
         <dependency>
